@@ -20,16 +20,15 @@ function novoUsuario() {
 
     if (listaDeUsuarios == null) {
         listaDeUsuarios = []
-
         listaDeUsuarios.push(usuario)
 
         localStorage.setItem("listaDeUsuarios", JSON.stringify(listaDeUsuarios))
     } else {
         listaDeUsuarios.push(usuario)
-
+        
         localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     }
-    
+
     alert('dados salvos')
 }
 
