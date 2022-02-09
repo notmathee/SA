@@ -8,7 +8,7 @@ let usuario = {
     endereco: '',
 }
 
-function novoUsuario() {
+function adicionarUsuario() {
     let usuario = {
         nome: document.getElementById('nomeCadastrado').value,
         email: document.getElementById('emailCadastrado').value,
