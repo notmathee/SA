@@ -16,13 +16,13 @@ function adicionarUsuario() {
         celular: document.getElementById('celularCadastrado').value
     }
 
-    listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios"))
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
 
     if (listaDeUsuarios == null) {
         listaDeUsuarios = []
         listaDeUsuarios.push(usuario)
 
-        localStorage.setItem("listaDeUsuarios", JSON.stringify(listaDeUsuarios))
+        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     } else {
         listaDeUsuarios.push(usuario)
         
@@ -34,7 +34,7 @@ function adicionarUsuario() {
 
 
 function showUsuarios() {
-    listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios"))
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     console.log(listaDeUsuarios)
     
 }
