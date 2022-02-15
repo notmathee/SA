@@ -5,7 +5,6 @@ let usuario = {
     email: '',
     senha: '',
     celular: '',
-    endereco: '',
 }
 
 function adicionarUsuario() {
@@ -20,22 +19,45 @@ function adicionarUsuario() {
 
     if (listaDeUsuarios == null) {
         listaDeUsuarios = []
-        listaDeUsuarios.push(usuario)
-
-        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-    } else {
-        listaDeUsuarios.push(usuario)
-        
-        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     }
+    if (usuario.nome == '' || usuario.email == '' || usuario.senha == '' || usuario.celular == '') {
+        alert('Todos os campos precisam ser preenchidos!')
+        return;
+    } else {
+        emailInvalido = false
+        listaDeUsuarios.forEach(usuarioJSON => {
+            if (usuarioJSON.email == usuario.email) {
+                emailInvalido = true
+            }
+        }); 
+        if(emailInvalido){
+            alert('Este E-mail existe no cadastro.')
+            return;
+        }
+    }
+    listaDeUsuarios.push(usuario)
+    localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
 
     alert('dados salvos')
 }
 
+let excluirUsuario = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    
+    if (usuario.nome == '' || usuario.email == '' || usuario.senha == '' || usuario.celular == '') {
+        alert('Todos os campos precisam ser preenchidos!')
+        return;
+    } else {
+        for (let i = 0; i < listaDeUsuarios.length; i++) {
+            i
+            
+        }
+    }
+}
 
-function showUsuarios() {
+function listarUsuario() {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     console.log(listaDeUsuarios)
-    
+
 }
 
