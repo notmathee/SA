@@ -20,18 +20,19 @@
 
         <div class="inputs">
             <label for="">Insira o seu E-mail</label><br>
-            <input id="emailCadastrado" type="text"><br>
+            <input id="emailLogin" type="text"><br>
         </div>
         <div class="inputs">
             <label for="">Insira sua senha</label><br>
-            <input id="senhaCadastrado" type="password"><br><br>
+            <input id="senhaLogin" type="password"><br><br>
         </div>
         <div class="btn">
-            <button id="btnEntrar" onClick="entrar()">Entrar</button>
+            <button onclick="logarUsuario()">Fazer Login</button>
+            <button onclick="logoutUsuario()">Sair da conta</button>
         </div>
-        <p><a href="paginaLogin.html">Ainda não tem uma conta? Cadastre</a></p>
+        <p><a href="./paginaCadastro.html">Ainda não tem uma conta? Cadastre</a></p>
     </div>
-    <script src="paginaLogin.js"></script>
+    <script src="./paginaCadastro.js"></script>
 </body>
 
 </html>
