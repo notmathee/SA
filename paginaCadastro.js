@@ -13,6 +13,11 @@ let usuario = {
     login: false,
 }
 
+let objetoLogado = {
+    email: '',
+    login: false,
+}
+
 let adicionarUsuario = () => {
     let usuario = {
         nome: document.getElementById('nomeCadastro').value,
@@ -49,7 +54,10 @@ let adicionarUsuario = () => {
 let logarUsuario = () => {
     var emailLogin = document.getElementById('emailLogin').value
     var senhaLogin = document.getElementById('senhaLogin').value
-    login = false
+    objetoLogado = {
+        email: emailLogin,
+        login: false,
+    }
 
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
@@ -71,8 +79,8 @@ let logarUsuario = () => {
         }
         if (usuarioLogin.email == emailLogin && usuarioLogin.senha == senhaLogin) {
             loginInvalido = false
-            usuarioLogin.login = true
-            usuarioLogado.push(usuarioLogin.nome, emailLogin, senhaLogin, usuarioLogin.celular, usuarioLogin.login)
+            login = true
+            usuarioLogado.push(objetoLogado = {email: emailLogin, login: login})
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('logado')
         }
@@ -85,25 +93,26 @@ let logarUsuario = () => {
 let logoutUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    for (let i = 0; i < usuarioLogado.length; i++) {
-        if (usuarioLogado[i] === true) {
-            usuarioLogado.splice([i], 1, false)
+    usuarioLogado.forEach(objetoLogin => {
+        if (objetoLogin.login === true) {
+            objetoLogin.login = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('logout feito')
         }
-    }
+    })
 }
 
 let listarUsuario = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('usuarioLogado'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    for (let i = 0; i < usuarioLogado.length; i++) {
-        if (usuarioLogado[i] === true) {
-            document.getElementById('nomeCadastroMostrar').innerText = usuarioLogado[0]
-            document.getElementById('emailCadastroMostrar').innerText = usuarioLogado[1]
-            document.getElementById('celularCadastroMostrar').innerText = usuarioLogado[3]
+    usuarioLogado.forEach(emailLogado => {
+        if (emailLogado.login === true) {
+            document.getElementById('nomeCadastroMostrar').innerText = usuario.nome
+            document.getElementById('emailCadastroMostrar').innerText = usuario.email
+            document.getElementById('celularCadastroMostrar').innerText = usuario.celular
         }
-    }
+    }) 
 }
 
 let excluirUsuario = () => {
@@ -111,9 +120,9 @@ let excluirUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     listaDeUsuarios.forEach(usuarioExcluir => {
-        if (usuarioExcluir.email == usuarioLogado[1]) {
+        if (usuarioExcluir.email == objetoLogado.email) {
             alert('oi')
-            listaDeUsuarios.splice(usuarioExcluir, 1)
+            listaDeUsuarios.splice(usuarioExcluir.usuario, 1)
             usuarioLogado.splice(usuarioLogado[0], usuarioLogado.length)
 
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
