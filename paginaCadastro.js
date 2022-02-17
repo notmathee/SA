@@ -60,10 +60,15 @@ let logarUsuario = () => {
 
     loginInvalido = true
     listaDeUsuarios.forEach(usuarioLogin => {
+        if (usuarioLogado != []) {
+            for (i = usuarioLogado.length; i > -1; i--) {
+                usuarioLogado.pop()
+            }
+        }
         if (usuarioLogin.email == email && usuarioLogin.senha == senha) {
             loginInvalido = false
             usuarioLogin.login = true
-            usuarioLogado.splice(0, 1, [usuarioLogin.nome, email, senha, usuarioLogin.celular, usuarioLogin.login])
+            usuarioLogado.push(usuarioLogin.nome, email, senha, usuarioLogin.celular, usuarioLogin.login)
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('logado')
         }
@@ -77,9 +82,13 @@ let logoutUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     for (let i = 0; i < usuarioLogado.length; i++) {
-        if ([i] == 'true') {
-            usuarioLogado[i] = false
-        }   
+        alert('logout em andamento')
+        if (usuarioLogado[i] == true) {
+            usuarioLogado.splice([i], 1, false)
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            alert('logout feito')
+        }
+        usuarioLogado.shift()
     }
 }
 
