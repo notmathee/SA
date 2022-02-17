@@ -82,13 +82,11 @@ let logoutUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     for (let i = 0; i < usuarioLogado.length; i++) {
-        alert('logout em andamento')
-        if (usuarioLogado[i] == true) {
+        if (usuarioLogado[i] === true) {
             usuarioLogado.splice([i], 1, false)
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('logout feito')
         }
-        usuarioLogado.shift()
     }
 }
 
@@ -103,5 +101,3 @@ let excluirUsuario = () => {
         }
     }
 }
-
-
