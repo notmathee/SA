@@ -46,7 +46,7 @@ let adicionarUsuario = () => {
         if (emailInvalido) {
             listaDeUsuarios.push(usuario)
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            alert('dados salvos')
+            alert('Dados salvos.')
         }
     }
 }
@@ -82,7 +82,7 @@ let logarUsuario = () => {
             login = true
             usuarioLogado.push(objetoLogado = { email: emailLogin, login: login })
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-            alert('logado')
+            alert('Login efetuado.')
         }
     });
     if (loginInvalido) {
@@ -97,7 +97,9 @@ let logoutUsuario = () => {
         if (objetoLogin.login === true) {
             objetoLogin.login = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-            alert('logout feito')
+            alert('Logout efetuado.')
+        } else {
+            alert('Você não está logado.')
         }
     })
 }
@@ -108,6 +110,10 @@ let excluirUsuario = () => {
 
     listaDeUsuarios.forEach(usuarioExcluir => {
         usuarioLogado.forEach(usuarioLogoutExcluir => {
+            if (usuarioLogoutExcluir.login !== true) {
+                alert('Faça o login primeiro.') 
+                return
+            }
             if (usuarioExcluir.email == usuarioLogoutExcluir.email) {
                 indexUsuarioVetor = listaDeUsuarios.indexOf(usuarioExcluir)
 
@@ -115,6 +121,8 @@ let excluirUsuario = () => {
                 usuarioLogado.splice(usuarioLogado[0], usuarioLogado.length)
                 localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
                 localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            } else {
+                alert('Faça o login primeiro.')
             }
         })
     })
