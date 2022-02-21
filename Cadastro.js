@@ -1,6 +1,10 @@
 let listaDeUsuarios = []
 let usuarioLogado
 
+let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar').value
+let emailCadastroMostrar = document.getElementById('emailCadastroMostrar').value
+let celularCadastroMostrar = document.getElementById('celularCadastroMostrar').value
+
 let usuario = {
     nome: '',
     email: '',
@@ -122,9 +126,9 @@ function atualizarUsuario() {
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
-            nomeCadastroMostrar.value = editarDadosUsuario.nome
-            emailCadastroMostrar.value = editarDadosUsuario.email
-            celularCadastroMostrar.value = editarDadosUsuario.celular
+            nomeCadastroMostrar = editarDadosUsuario.nome
+            emailCadastroMostrar = editarDadosUsuario.email
+            celularCadastroMostrar = editarDadosUsuario.celular
         }
     })
 }
