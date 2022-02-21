@@ -102,19 +102,6 @@ let logoutUsuario = () => {
     })
 }
 
-let listarUsuario = () => {
-    listaDeUsuarios = JSON.parse(localStorage.getItem('usuarioLogado'))
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
-    usuarioLogado.forEach(emailLogado => {
-        if (emailLogado.login === true) {
-            document.getElementById('nomeCadastroMostrar').innerText = usuario.nome
-            document.getElementById('emailCadastroMostrar').innerText = usuario.email
-            document.getElementById('celularCadastroMostrar').innerText = usuario.celular
-        }
-    })
-}
-
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
@@ -130,5 +117,18 @@ let excluirUsuario = () => {
                 localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             }
         })
+    })
+}
+
+let listarUsuario = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('usuarioLogado'))
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+    usuarioLogado.forEach(emailLogado => {
+        if (emailLogado.login === true) {
+            document.getElementById('nomeCadastroMostrar').innerText = usuario.nome
+            document.getElementById('emailCadastroMostrar').innerText = usuario.email
+            document.getElementById('celularCadastroMostrar').innerText = usuario.celular
+        }
     })
 }
