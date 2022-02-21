@@ -80,7 +80,7 @@ let logarUsuario = () => {
         if (usuarioLogin.email == emailLogin && usuarioLogin.senha == senhaLogin) {
             loginInvalido = false
             login = true
-            usuarioLogado.push(objetoLogado = {email: emailLogin, login: login})
+            usuarioLogado.push(objetoLogado = { email: emailLogin, login: login })
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('logado')
         }
@@ -112,7 +112,7 @@ let listarUsuario = () => {
             document.getElementById('emailCadastroMostrar').innerText = usuario.email
             document.getElementById('celularCadastroMostrar').innerText = usuario.celular
         }
-    }) 
+    })
 }
 
 let excluirUsuario = () => {
@@ -120,13 +120,15 @@ let excluirUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     listaDeUsuarios.forEach(usuarioExcluir => {
-        if (usuarioExcluir.email == objetoLogado.email) {
-            alert('oi')
-            listaDeUsuarios.splice(usuarioExcluir.usuario, 1)
-            usuarioLogado.splice(usuarioLogado[0], usuarioLogado.length)
+        usuarioLogado.forEach(usuarioLogoutExcluir => {
+            if (usuarioExcluir.email == usuarioLogoutExcluir.email) {
+                indexUsuarioVetor = listaDeUsuarios.indexOf(usuarioExcluir)
 
-            localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-        }
+                listaDeUsuarios.splice(indexUsuarioVetor, 1)
+                usuarioLogado.splice(usuarioLogado[0], usuarioLogado.length)
+                localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+                localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            }
+        })
     })
 }
