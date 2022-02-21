@@ -128,6 +128,10 @@ let excluirUsuario = () => {
     })
 }
 
+atualizarUsuario = () => {
+    
+}
+
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('usuarioLogado'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
