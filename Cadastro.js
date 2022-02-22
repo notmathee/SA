@@ -1,9 +1,9 @@
 let listaDeUsuarios = []
 let usuarioLogado
 
-let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar').value
-let emailCadastroMostrar = document.getElementById('emailCadastroMostrar').value
-let celularCadastroMostrar = document.getElementById('celularCadastroMostrar').value
+let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
+let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
+let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
 
 let usuario = {
     nome: '',
@@ -105,6 +105,7 @@ let logoutUsuario = () => {
 }
 
 let listarUsuario = () => {
+    window.location.href = 'paginaCRUD.html'
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
@@ -126,9 +127,9 @@ function atualizarUsuario() {
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
-            nomeCadastroMostrar = editarDadosUsuario.nome
-            emailCadastroMostrar = editarDadosUsuario.email
-            celularCadastroMostrar = editarDadosUsuario.celular
+            nomeCadastroMostrar.value = editarDadosUsuario.nome
+            emailCadastroMostrar.value = editarDadosUsuario.email
+            celularCadastroMostrar.value = editarDadosUsuario.celular
         }
     })
 }
