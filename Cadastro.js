@@ -1,10 +1,6 @@
 let listaDeUsuarios = []
 let usuarioLogado
 
-let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
-let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
-let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
-
 let usuario = {
     nome: '',
     email: '',
@@ -105,31 +101,69 @@ let logoutUsuario = () => {
 }
 
 let listarUsuario = () => {
-    window.location.href = 'paginaCRUD.html'
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
+    let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
+    let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
+    let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
+
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
-            nomeCadastroMostrar.innerText = listarDadosUsuario.nome
-            emailCadastroMostrar.innerText = listarDadosUsuario.email
-            celularCadastroMostrar.innerText = listarDadosUsuario.celular
+            nomeCadastroMostrar.value = listarDadosUsuario.nome
+            emailCadastroMostrar.value = listarDadosUsuario.email
+            celularCadastroMostrar.value = listarDadosUsuario.celular
         } else {
             alert('Primeiro, faça o login.')
         }
     })
 }
 
-function atualizarUsuario() {
-    window.location.href = 'paginaAtualizar.html'
+let atualizarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
+    let nomeCadastroEditar = document.getElementById('nomeCadastroMostrar')
+    let emailCadastroEditar = document.getElementById('emailCadastroMostrar')
+    let celularCadastroEditar = document.getElementById('celularCadastroMostrar')
+
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
-            nomeCadastroMostrar.value = editarDadosUsuario.nome
-            emailCadastroMostrar.value = editarDadosUsuario.email
-            celularCadastroMostrar.value = editarDadosUsuario.celular
+            nomeCadastroEditar.value = editarDadosUsuario.nome
+            emailCadastroEditar.value = editarDadosUsuario.email
+            celularCadastroEditar.value = editarDadosUsuario.celular
         }
     })
+}
+
+let editarUsuario = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+    let nomeCadastroEditar = document.getElementById('nomeCadastroMostrar')
+    let emailCadastroEditar = document.getElementById('emailCadastroMostrar')
+    let celularCadastroEditar = document.getElementById('celularCadastroMostrar')
+
+    if (nomeCadastroEditar.value == '' || emailCadastroEditar.value == '' || celularCadastroEditar.value == '') {
+        return alert('Todos os campos precisam ser preenchidos.')
+    }
+
+    listaDeUsuarios.forEach(editarDadosUsuario => {
+        if (nomeCadastroEditar.value != editarDadosUsuario.email) {
+            nomeCadastroEditar.value = editarDadosUsuario.nome
+            emailCadastroEditar.value = editarDadosUsuario.email
+            celularCadastroEditar.value = editarDadosUsuario.celular
+            
+        } else {
+            
+        }
+    }) 
+}
+
+let showListarUsuario = () => {
+    window.location.href = "paginaListar.html"
+}
+
+let showAtualizarUsuario = () => {
+    window.location.href = "paginaAtualizar.html"
 }

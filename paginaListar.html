@@ -8,19 +8,19 @@
     <title>Página do Usuário</title>
 </head>
 
-<body onload="atualizarUsuario()">
+<body onload="listarUsuario()">
     <header>
         <h1>CEDIM</h1>
     </header>
-    <label for="">Nome</label>
-    <input type="text" id="nomeCadastroEditar">
-    <label for="">Email</label>
-    <input type="text" id="emailCadastroEditar">
-    <label for="">Celular</label>
-    <input type="text" id="celularCadastroEditar">
 
-    <button onclick="atualizarUsuario()">Editar usuário</button>
-    
+    <input type="text" id="nomeCadastroMostrar" readonly>
+
+    <input type="text" id="emailCadastroMostrar" readonly>
+
+    <input type="text" id="celularCadastroMostrar" readonly>
+
+    <button type="button" onclick="excluirUsuario()">Excluir usuário</button>
+
     <script src="./Cadastro.js"></script>
 </body>
 
