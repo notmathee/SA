@@ -163,6 +163,9 @@ let editarUsuario = () => {
         }
         if (celularCadastroEditar != editarDadosUsuario.celular) {
             editarDadosUsuario.celular = celularCadastroEditar.value
+
+        } else {
+            return alert('Faça o login primeiro.')
         }
     })
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
@@ -188,3 +191,4 @@ let onloadListarAtualizar = () => {
     listarUsuario()
     atualizarUsuario()
 }
+
