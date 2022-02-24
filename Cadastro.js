@@ -55,7 +55,7 @@ let excluirUsuario = () => {
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
         } else {
-            alert('Faça o login primeiro.')
+            return alert('Faça o login primeiro.')
         }
     })
 }
@@ -110,9 +110,9 @@ let listarUsuario = () => {
 
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
-            nomeCadastroMostrar.value = listarDadosUsuario.nome
-            emailCadastroMostrar.value = listarDadosUsuario.email
-            celularCadastroMostrar.value = listarDadosUsuario.celular
+            nomeCadastroMostrar.innerText = listarDadosUsuario.nome
+            emailCadastroMostrar.innerText = listarDadosUsuario.email
+            celularCadastroMostrar.innerText = listarDadosUsuario.celular
         } else {
             alert('Primeiro, faça o login.')
         }
@@ -123,9 +123,9 @@ let atualizarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let nomeCadastroEditar = document.getElementById('nomeCadastroMostrar')
-    let emailCadastroEditar = document.getElementById('emailCadastroMostrar')
-    let celularCadastroEditar = document.getElementById('celularCadastroMostrar')
+    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
+    let emailCadastroEditar = document.getElementById('emailCadastroEditar')
+    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
@@ -140,30 +140,51 @@ let editarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let nomeCadastroEditar = document.getElementById('nomeCadastroMostrar')
-    let emailCadastroEditar = document.getElementById('emailCadastroMostrar')
-    let celularCadastroEditar = document.getElementById('celularCadastroMostrar')
+    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
+    let emailCadastroEditar = document.getElementById('emailCadastroEditar')
+    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
 
     if (nomeCadastroEditar.value == '' || emailCadastroEditar.value == '' || celularCadastroEditar.value == '') {
         return alert('Todos os campos precisam ser preenchidos.')
     }
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
-        if (nomeCadastroEditar.value != editarDadosUsuario.email) {
-            nomeCadastroEditar.value = editarDadosUsuario.nome
-            emailCadastroEditar.value = editarDadosUsuario.email
-            celularCadastroEditar.value = editarDadosUsuario.celular
-            
-        } else {
-            
+        if (nomeCadastroEditar.value == editarDadosUsuario.nome &&
+            emailCadastroEditar.value == editarDadosUsuario.email &&
+            celularCadastroEditar.value == editarDadosUsuario.celular) {
+            return alert('Mude algo para editar os dados.')
         }
-    }) 
+        if (nomeCadastroEditar.value != editarDadosUsuario.nome) {
+            editarDadosUsuario.nome = nomeCadastroEditar.value
+        }
+        if (emailCadastroEditar.value != editarDadosUsuario.email) {
+            editarDadosUsuario.email = emailCadastroEditar.value
+            usuarioLogado = editarDadosUsuario.email
+        }
+        if (celularCadastroEditar != editarDadosUsuario.celular) {
+            editarDadosUsuario.celular = celularCadastroEditar.value
+        }
+    })
+    localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+    alert('Dados atualizados.')
+
+    window.location.href = 'paginaAtualizar.html'
 }
 
 let showListarUsuario = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça o login.')
     window.location.href = "paginaListar.html"
 }
 
 let showAtualizarUsuario = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça o login.')
     window.location.href = "paginaAtualizar.html"
+}
+
+let onloadListarAtualizar = () => {
+    listarUsuario()
+    atualizarUsuario()
 }
