@@ -144,7 +144,6 @@ let editarUsuario = () => {
     let emailCadastroEditar = document.getElementById('emailCadastroEditar')
     let celularCadastroEditar = document.getElementById('celularCadastroEditar')
     let mudeAlgo = false
-    let façaLogin = false
 
     if (nomeCadastroEditar.value == '' || emailCadastroEditar.value == '' || celularCadastroEditar.value == '') {
         return alert('Todos os campos precisam ser preenchidos.')
@@ -166,12 +165,9 @@ let editarUsuario = () => {
         if (celularCadastroEditar != editarDadosUsuario.celular) {
             editarDadosUsuario.celular = celularCadastroEditar.value
 
-        } else {
-            façaLogin = true
         }
     })
     if (mudeAlgo) return alert('Mude algo para editar os dados.')
-    if (façaLogin) return alert('Faça o login primeiro.')
 
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
