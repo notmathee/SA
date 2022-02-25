@@ -143,6 +143,8 @@ let editarUsuario = () => {
     let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
     let emailCadastroEditar = document.getElementById('emailCadastroEditar')
     let celularCadastroEditar = document.getElementById('celularCadastroEditar')
+    let mudeAlgo = false
+    let façaLogin = false
 
     if (nomeCadastroEditar.value == '' || emailCadastroEditar.value == '' || celularCadastroEditar.value == '') {
         return alert('Todos os campos precisam ser preenchidos.')
@@ -152,7 +154,7 @@ let editarUsuario = () => {
         if (nomeCadastroEditar.value == editarDadosUsuario.nome &&
             emailCadastroEditar.value == editarDadosUsuario.email &&
             celularCadastroEditar.value == editarDadosUsuario.celular) {
-            return alert('Mude algo para editar os dados.')
+            mudeAlgo = true
         }
         if (nomeCadastroEditar.value != editarDadosUsuario.nome) {
             editarDadosUsuario.nome = nomeCadastroEditar.value
@@ -165,9 +167,12 @@ let editarUsuario = () => {
             editarDadosUsuario.celular = celularCadastroEditar.value
 
         } else {
-            return alert('Faça o login primeiro.')
+            façaLogin = true
         }
     })
+    if (mudeAlgo) return alert('Mude algo para editar os dados.')
+    if (façaLogin) return alert('Faça o login primeiro.')
+    
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
     alert('Dados atualizados.')
