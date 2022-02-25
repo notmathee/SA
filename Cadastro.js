@@ -176,14 +176,35 @@ let editarUsuario = () => {
     window.location.href = 'paginaAtualizar.html'
 }
 
+let redefinirSenha = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+    let novaSenha = document.getElementById('novaSenha')
+    let repetirNovaSenha = document.getElementById('repetirNovaSenha')
+    let emailRedefinirSenha = document.getElementById('emailRedefinirSenha')
+
+    if (novaSenha.value == repetirNovaSenha.value) {
+        for (let i = 0; i < listaDeUsuarios.length; i++) {
+            listaDeUsuarios[i].senha = novaSenha.value
+            localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+            alert('Senha redefinida.')
+        }
+    }
+}
+
 let showListarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça o login.')
+    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça login.')
     window.location.href = "paginaListar.html"
 }
 
 let showAtualizarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça o login.')
+    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça login.')
     window.location.href = "paginaAtualizar.html"
+}
+
+let showRedefinirSenha = () => {
+    window.location.href = 'redefinirSenha.html'
 }
