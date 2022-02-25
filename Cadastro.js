@@ -172,7 +172,7 @@ let editarUsuario = () => {
     })
     if (mudeAlgo) return alert('Mude algo para editar os dados.')
     if (façaLogin) return alert('Faça o login primeiro.')
-    
+
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
     alert('Dados atualizados.')
@@ -191,9 +191,3 @@ let showAtualizarUsuario = () => {
     if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça o login.')
     window.location.href = "paginaAtualizar.html"
 }
-
-let onloadListarAtualizar = () => {
-    listarUsuario()
-    atualizarUsuario()
-}
-
