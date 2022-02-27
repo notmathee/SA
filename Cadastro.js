@@ -30,7 +30,7 @@ let adicionarUsuario = () => {
                 emailInvalido = false
                 alert('Este E-mail existe no cadastro.')
             }
-        });
+        })
         if (emailInvalido) {
             listaDeUsuarios.push(usuario)
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
@@ -42,46 +42,40 @@ let adicionarUsuario = () => {
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    loginInvalido = true
 
     listaDeUsuarios.forEach(usuarioExcluir => {
-        if (usuarioLogado == null) {
-            return alert('Faça o login primeiro.')
-        }
         if (usuarioExcluir.email == usuarioLogado) {
             indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
 
             listaDeUsuarios.splice(indexArrayUsuario, 1)
             usuarioLogado = null
+            loginInvalido = false
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-        } else {
-            return alert('Faça o login primeiro.')
         }
     })
+    if (loginInvalido) alert('Faça o login primeiro.')
 }
 
 let logarUsuario = () => {
-    let emailLogin = document.getElementById('emailLogin').value
-    let senhaLogin = document.getElementById('senhaLogin').value
-
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    if (emailLogin == '' || senhaLogin == '') {
-        return alert('Todos os campos precisam ser preenchidos!')
-    }
+    let emailLogin = document.getElementById('emailLogin').value
+    let senhaLogin = document.getElementById('senhaLogin').value
     loginInvalido = true
+
+    if (emailLogin == '' || senhaLogin == '') return alert('Todos os campos precisam ser preenchidos!')
+
     listaDeUsuarios.forEach(usuarioLogin => {
-        if (usuarioLogado != null) {
-            usuarioLogado = null
-        }
         if (usuarioLogin.email == emailLogin && usuarioLogin.senha == senhaLogin) {
-            loginInvalido = false
             usuarioLogado = emailLogin
+            loginInvalido = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
             alert('Login efetuado.')
         }
-    });
+    })
     if (loginInvalido) {
         alert('E-mail ou senha inválidos.')
     }
@@ -107,16 +101,17 @@ let listarUsuario = () => {
     let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
     let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
     let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
+    loginInvalido = true
 
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
             nomeCadastroMostrar.innerText = listarDadosUsuario.nome
             emailCadastroMostrar.innerText = listarDadosUsuario.email
             celularCadastroMostrar.innerText = listarDadosUsuario.celular
-        } else {
-            alert('Primeiro, faça o login.')
+            return loginInvalido = false
         }
     })
+    if (loginInvalido) alert('Primeiro, faça login.')
 }
 
 let atualizarUsuario = () => {
@@ -140,34 +135,36 @@ let editarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
-    let emailCadastroEditar = document.getElementById('emailCadastroEditar')
-    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
-    let mudeAlgo = false
+    let arrayCadastroEditar = [
+        document.getElementById('nomeCadastroEditar').value,
+        document.getElementById('emailCadastroEditar').value,
+        document.getElementById('celularCadastroEditar').value
+    ]
+    // let mudeAlgo = false
 
-    if (nomeCadastroEditar.value == '' || emailCadastroEditar.value == '' || celularCadastroEditar.value == '') {
-        return alert('Todos os campos precisam ser preenchidos.')
+    for (i = 0; i < arrayCadastroEditar.length; i++) {
+        if (arrayCadastroEditar[i] == '') return alert('Todos os campos precisam ser preenchidos.')
     }
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
-        if (nomeCadastroEditar.value == editarDadosUsuario.nome &&
-            emailCadastroEditar.value == editarDadosUsuario.email &&
-            celularCadastroEditar.value == editarDadosUsuario.celular) {
-            mudeAlgo = true
+        if (nomeCadastroEditar == editarDadosUsuario.nome &&
+            emailCadastroEditar == editarDadosUsuario.email &&
+            celularCadastroEditar == editarDadosUsuario.celular) {
+            // mudeAlgo = true
         }
-        if (nomeCadastroEditar.value != editarDadosUsuario.nome) {
-            editarDadosUsuario.nome = nomeCadastroEditar.value
+        if (nomeCadastroEditar != editarDadosUsuario.nome) {
+            editarDadosUsuario.nome = nomeCadastroEditar
         }
-        if (emailCadastroEditar.value != editarDadosUsuario.email) {
-            editarDadosUsuario.email = emailCadastroEditar.value
+        if (emailCadastroEditar != editarDadosUsuario.email) {
+            editarDadosUsuario.email = emailCadastroEditar
             usuarioLogado = editarDadosUsuario.email
         }
         if (celularCadastroEditar != editarDadosUsuario.celular) {
-            editarDadosUsuario.celular = celularCadastroEditar.value
+            editarDadosUsuario.celular = celularCadastroEditar
 
         }
     })
-    if (mudeAlgo) return alert('Mude algo para editar os dados.')
+    // if (mudeAlgo) return alert('Mude algo para editar os dados.')
 
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
@@ -184,13 +181,15 @@ let redefinirSenha = () => {
     let repetirNovaSenha = document.getElementById('repetirNovaSenha')
     let emailRedefinirSenha = document.getElementById('emailRedefinirSenha')
 
-    if (novaSenha.value == repetirNovaSenha.value) {
-        for (let i = 0; i < listaDeUsuarios.length; i++) {
+    for (let i = 0; i < listaDeUsuarios.length; i++) {
+        if (novaSenha.value == repetirNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
             listaDeUsuarios[i].senha = novaSenha.value
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            alert('Senha redefinida.')
+            return alert('Senha redefinida.')
         }
     }
+    if (novaSenha.value != repetirNovaSenha.value) alert('As senhas não são iguais.')
+    else alert('Este E-mail não está cadastrado.')
 }
 
 let showListarUsuario = () => {
@@ -205,6 +204,4 @@ let showAtualizarUsuario = () => {
     window.location.href = "paginaAtualizar.html"
 }
 
-let showRedefinirSenha = () => {
-    window.location.href = 'redefinirSenha.html'
-}
+let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
