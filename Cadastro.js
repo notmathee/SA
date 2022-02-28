@@ -125,7 +125,6 @@ let atualizarUsuario = () => {
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
             nomeCadastroEditar.value = editarDadosUsuario.nome
-            emailCadastroEditar.value = editarDadosUsuario.email
             celularCadastroEditar.value = editarDadosUsuario.celular
         }
     })
@@ -137,35 +136,19 @@ let editarUsuario = () => {
 
     let arrayCadastroEditar = [
         document.getElementById('nomeCadastroEditar').value,
-        document.getElementById('emailCadastroEditar').value,
-        document.getElementById('celularCadastroEditar').value
+        document.getElementById('celularCadastroEditar').value,
     ]
-    // let mudeAlgo = false
 
     for (i = 0; i < arrayCadastroEditar.length; i++) {
         if (arrayCadastroEditar[i] == '') return alert('Todos os campos precisam ser preenchidos.')
     }
-
+    
     listaDeUsuarios.forEach(editarDadosUsuario => {
-        if (nomeCadastroEditar == editarDadosUsuario.nome &&
-            emailCadastroEditar == editarDadosUsuario.email &&
-            celularCadastroEditar == editarDadosUsuario.celular) {
-            // mudeAlgo = true
-        }
-        if (nomeCadastroEditar != editarDadosUsuario.nome) {
-            editarDadosUsuario.nome = nomeCadastroEditar
-        }
-        if (emailCadastroEditar != editarDadosUsuario.email) {
-            editarDadosUsuario.email = emailCadastroEditar
-            usuarioLogado = editarDadosUsuario.email
-        }
-        if (celularCadastroEditar != editarDadosUsuario.celular) {
-            editarDadosUsuario.celular = celularCadastroEditar
-
+        if (editarDadosUsuario.email == usuarioLogado) {
+            editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
+            editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
         }
     })
-    // if (mudeAlgo) return alert('Mude algo para editar os dados.')
-
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
     alert('Dados atualizados.')
