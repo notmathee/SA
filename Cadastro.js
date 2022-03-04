@@ -8,6 +8,11 @@ let usuario = {
     celular: '',
 }
 
+let cpfCnpj = {
+    cpf: '',
+    cnpj: '',
+}
+
 let adicionarUsuario = () => {
     let usuario = {
         nome: document.getElementById('nomeCadastro').value,
