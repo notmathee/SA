@@ -193,3 +193,7 @@ let showAtualizarUsuario = () => {
 }
 
 let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
+
+document.getElementById('swalBotao').addEventListener('click', function(){
+    Swal.fire('oi')
+})
