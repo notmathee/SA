@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CEDIM</title>
+  <title>CEDIM - P´´agina Inicial</title>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/index.css">
@@ -30,19 +30,22 @@
         <div class="mx-auto"></div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="swalDoacao" class="nav-link text-white" href="">Doações</a>
+            <a id="swalSobre" class="nav-link text-white" href="#scrollEmpresa">Sobre a Empresa</a>
           </li>
           <li class="nav-item">
-            <a id="swalSobre" class="nav-link text-white" href="">Sobre a empresa</a>
+            <a id="swalDoacao" class="nav-link text-white" href="#scrollDinheiro">Doações</a>
           </li>
           <li class="nav-item">
-            <a id="swalPerfil" class="nav-link text-white" href="">Perfil</a>
+            <a id="swalPerfil" class="nav-link text-white" href="#" onclick="showListarUsuario()">Perfil</a>
           </li>
           <li class="nav-item">
-            <a id="swalLogin" class="nav-link text-white" href="">Login</a>
+            <a id="swalLogin" class="nav-link text-white" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a id="swalCadastro" class="nav-link text-white" href="">Cadastro</a>
+            <a id="swalCadastro" class="nav-link text-white" href="#">Cadastro</a>
+          </li>
+          <li class="nav-item">
+            <a id="swalSair" class="nav-link text-white" href="#">Sair da Conta</a>
           </li>
         </ul> 
       </div>
@@ -58,33 +61,32 @@
 
   <!-- Main Content Area -->
   <div class="container my-5 d-grid gap-5">
-    <div class="p-5 border">
+    <div id="scrollEmpresa"></div>
+    <div id="sobreEmpresa" class="p-5 border">
       <p>
-        <button id="swalBotao">oi</button>
+        Sobre n´´os
       </p>
     </div>
-    <div class="p-5 border">
+    <div id="scrollDinheiro"></div>
+    <div id="doarDinheiro" class="p-5 border">
       <p>
-        
+        Doar dinheiro
       </p>
     </div>
-    <div class="p-5 border">
+    <div id="scrollVestimenta"></div>
+    <div id="doarVestimenta" class="p-5 border">
       <p>
-        blocos para imput
+        Doar vestimenta
       </p>
     </div>
-    <div class="p-5 border">
+    <div id="scrollAlimento"></div>
+    <div id="doarAlimento" class="p-5 border">
       <p>
-        blocos para imput
-      </p>
-    </div>
-    <div class="p-5 border">
-      <p>
-        blocos para imput
+        Doar alimento
       </p>
     </div>
   </div>
-  <script src="../Cadastro.js"></script>
+  <script src="./Cadastro.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 

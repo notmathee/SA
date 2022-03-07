@@ -86,18 +86,16 @@ let logarUsuario = () => {
     }
 }
 
-let logoutUsuario = () => {
+document.getElementById('swalSair').addEventListener('click', function(){
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     if (usuarioLogado != null) {
         usuarioLogado = null
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-        alert('Logout efetuado.')
-    } else {
-        alert('Você não está logado.')
+        return Swal.fire('Você saiu da sua conta.')
     }
-
-}
+    Swal.fire('Você não está logado.')  
+})
 
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
@@ -124,7 +122,6 @@ let atualizarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
-    let emailCadastroEditar = document.getElementById('emailCadastroEditar')
     let celularCadastroEditar = document.getElementById('celularCadastroEditar')
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
@@ -194,6 +191,11 @@ let showAtualizarUsuario = () => {
 
 let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
 
-document.getElementById('swalBotao').addEventListener('click', function(){
-    Swal.fire('oi')
+document.getElementById('swalLogin').addEventListener('click', function(){
+    Swal.fire('Login')
 })
+
+document.getElementById('swalCadastro').addEventListener('click', function(){
+    Swal.fire('Cadastro')
+})
+

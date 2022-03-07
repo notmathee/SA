@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     width: 100%;
+    overflow-anchor: none;
 }
 
 .content {
@@ -26,9 +27,20 @@ body, html {
 .navbar {
     background: hsl(0, 0%, 100%, 0.2);
     backdrop-filter: blur(1rem);
+}
 
+.nav-item {
+    margin-inline: 1rem;
 }
 
 .banner-image {
     box-shadow: 5rem rgba(0,0,0,.15)
+}
+
+#scrollEmpresa, #scrollDinheiro, #scrollVestimenta, #scrollAlimento {
+    height: 2rem;
+}
+
+#sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
+    height: 10rem;
 }
