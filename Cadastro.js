@@ -44,6 +44,27 @@ let adicionarUsuario = () => {
     }
 }
 
+// document.getElementById('swalExcluir').onclick = function(){
+//     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+//     loginInvalido = true
+
+//     listaDeUsuarios.forEach(usuarioExcluir => {
+//         if (usuarioExcluir.email == usuarioLogado) {
+//             indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
+
+//             listaDeUsuarios.splice(indexArrayUsuario, 1)
+//             usuarioLogado = null
+//             loginInvalido = false
+//             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+//             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+//             Swal.fire('Conta excluida.')
+//         }
+//     })
+//     if (loginInvalido) Swal.fire('Faça login para excluir a conta.')
+
+// }
+
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
@@ -96,6 +117,18 @@ document.getElementById('swalSair').addEventListener('click', function(){
     }
     Swal.fire('Você não está logado.')  
 })
+
+// let logoutUsuario = () => {
+//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+//     if (usuarioLogado != null) {
+//         usuarioLogado = null
+//         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+//     } else {
+//         document.getElementById('swalSair').addEventListener('click', function(){
+//         })
+//     }
+// }
 
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
@@ -192,10 +225,7 @@ let showAtualizarUsuario = () => {
 let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
 
 document.getElementById('swalLogin').addEventListener('click', function(){
-    Swal.fire('Login')
 })
 
 document.getElementById('swalCadastro').addEventListener('click', function(){
-    Swal.fire('Cadastro')
 })
-
