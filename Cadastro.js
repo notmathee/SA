@@ -27,43 +27,28 @@ let adicionarUsuario = () => {
         listaDeUsuarios = []
     }
     if (usuario.nome == '' || usuario.email == '' || usuario.senha == '' || usuario.celular == '') {
-        return alert('Todos os campos precisam ser preenchidos!')
+        return Swal.fire({
+            icon: 'error',
+            title: 'Todos os campos precisam ser preenchidos!'
+        })
     } else {
-        emailInvalido = true
+        emailValido = true
         listaDeUsuarios.forEach(usuarioCadastro => {
             if (usuarioCadastro.email == usuario.email) {
-                emailInvalido = false
-                alert('Este E-mail existe no cadastro.')
+                emailValido = false
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este email já está cadastrado.'
+                })
             }
         })
-        if (emailInvalido) {
+        if (emailValido) {
             listaDeUsuarios.push(usuario)
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            alert('Dados salvos.')
+            Swal.fire('Dados salvos.')
         }
     }
 }
-
-// document.getElementById('swalExcluir').onclick = function(){
-//     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
-//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-//     loginInvalido = true
-
-//     listaDeUsuarios.forEach(usuarioExcluir => {
-//         if (usuarioExcluir.email == usuarioLogado) {
-//             indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
-
-//             listaDeUsuarios.splice(indexArrayUsuario, 1)
-//             usuarioLogado = null
-//             loginInvalido = false
-//             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-//             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-//             Swal.fire('Conta excluida.')
-//         }
-//     })
-//     if (loginInvalido) Swal.fire('Faça login para excluir a conta.')
-
-// }
 
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
@@ -79,9 +64,13 @@ let excluirUsuario = () => {
             loginInvalido = false
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            window.location.href = "paginaIndex.html"
         }
     })
-    if (loginInvalido) alert('Faça o login primeiro.')
+    if (loginInvalido) Swal.fire({
+        icon: 'error',
+        title: 'Faça o login primeiro.'
+    })
 }
 
 let logarUsuario = () => {
@@ -92,53 +81,40 @@ let logarUsuario = () => {
     let senhaLogin = document.getElementById('senhaLogin').value
     loginInvalido = true
 
-    if (emailLogin == '' || senhaLogin == '') return alert('Todos os campos precisam ser preenchidos!')
+    if (emailLogin == '' || senhaLogin == '') return Swal.fire({
+        icon: 'error',
+        title: 'Todos os campos precisam ser preenchidos!'
+    })
+    if (emailLogin == usuarioLogado) return Swal.fire({
+        icon: 'error',
+        title: 'Você já está logado.',
+    })
 
     listaDeUsuarios.forEach(usuarioLogin => {
         if (usuarioLogin.email == emailLogin && usuarioLogin.senha == senhaLogin) {
             usuarioLogado = emailLogin
             loginInvalido = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-            alert('Login efetuado.')
+            return Swal.fire('Login efetuado.')
         }
     })
     if (loginInvalido) {
-        alert('E-mail ou senha inválidos.')
+        return Swal.fire({
+            icon: 'error',
+            title: 'Email ou senha incorretos.'
+        })
     }
 }
-
-document.getElementById('swalSair').addEventListener('click', function(){
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
-    if (usuarioLogado != null) {
-        usuarioLogado = null
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-        return Swal.fire('Você saiu da sua conta.')
-    }
-    Swal.fire('Você não está logado.')  
-})
-
-// let logoutUsuario = () => {
-//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
-//     if (usuarioLogado != null) {
-//         usuarioLogado = null
-//         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-//     } else {
-//         document.getElementById('swalSair').addEventListener('click', function(){
-//         })
-//     }
-// }
 
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
+    
     let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
     let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
     let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
     loginInvalido = true
-
+    
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
             nomeCadastroMostrar.innerText = listarDadosUsuario.nome
@@ -147,16 +123,20 @@ let listarUsuario = () => {
             return loginInvalido = false
         }
     })
-    if (loginInvalido) alert('Primeiro, faça login.')
+    if (loginInvalido) return Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, faça login.'
+    })
 }
+
 
 let atualizarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
+    
     let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
     let celularCadastroEditar = document.getElementById('celularCadastroEditar')
-
+    
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (usuarioLogado == editarDadosUsuario.email) {
             nomeCadastroEditar.value = editarDadosUsuario.nome
@@ -173,9 +153,12 @@ let editarUsuario = () => {
         document.getElementById('nomeCadastroEditar').value,
         document.getElementById('celularCadastroEditar').value,
     ]
-
+    
     for (i = 0; i < arrayCadastroEditar.length; i++) {
-        if (arrayCadastroEditar[i] == '') return alert('Todos os campos precisam ser preenchidos.')
+        if (arrayCadastroEditar[i] == '') return Swal.fire({
+            icon: 'error',
+            title: 'Todos os campos precisam ser preenchidos.'
+        })
     }
     
     listaDeUsuarios.forEach(editarDadosUsuario => {
@@ -186,7 +169,7 @@ let editarUsuario = () => {
     })
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-    alert('Dados atualizados.')
+    Swal.fire('Dados atualizados.')
 
     window.location.href = 'paginaAtualizar.html'
 }
@@ -203,29 +186,58 @@ let redefinirSenha = () => {
         if (novaSenha.value == repetirNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
             listaDeUsuarios[i].senha = novaSenha.value
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            return alert('Senha redefinida.')
+            return Swal.fire('Senha redefinida.')
         }
     }
-    if (novaSenha.value != repetirNovaSenha.value) alert('As senhas não são iguais.')
-    else alert('Este E-mail não está cadastrado.')
+    if (novaSenha.value != repetirNovaSenha.value) Swal.fire({
+        icon: 'error',
+        title: 'As senhas não são iguais.'
+    })
+    else Swal.fire({
+        icon: 'error',
+        title: 'Este email não está cadastrado.'
+    })
 }
 
 let showListarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça login.')
+    if (usuarioLogado == null) return Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, crie uma conta ou faça login.'
+    })
     window.location.href = "paginaListar.html"
 }
 
 let showAtualizarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return alert('primeiro, crie uma conta ou faça login.')
+    if (usuarioLogado == null) return Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, crie uma conta ou faça login',
+    })
     window.location.href = "paginaAtualizar.html"
 }
 
 let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
 
-document.getElementById('swalLogin').addEventListener('click', function(){
+document.getElementById('swalSair').addEventListener('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+    if (usuarioLogado != null) {
+        usuarioLogado = null
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+        return Swal.fire('Você saiu da sua conta.')
+    }
+    return Swal.fire({
+        icon: 'error',
+        title: 'Você não está logado.'
+    })
 })
 
-document.getElementById('swalCadastro').addEventListener('click', function(){
+document.getElementById('swalPerfil').addEventListener('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    if (usuarioLogado == null) return Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, faça o login ou cadastre uma conta.',
+    })
+    window.location.href = "paginaListar.html"
 })

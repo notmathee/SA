@@ -44,3 +44,37 @@ body, html {
 #sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
     height: 10rem;
 }
+
+/* .wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-image: linear-gradient(to top, transparent, transparent);
+    overflow: hidden;
+}
+
+.wave {
+    width: 100%;
+    height: 200vh;
+    position: absolute;
+    margin-inline: center;
+    margin-left: -407px;
+    margin-top: -486px;
+    border-radius: 54%;
+    background: rgba(158, 38, 38, 0.75);
+    animation: wave 15s infinite linear;
+}
+
+@keyframes wave {
+    from {
+        transform: rotate(0deg);
+    }
+
+    from {
+        transform: rotate(360deg);
+    }
+} */

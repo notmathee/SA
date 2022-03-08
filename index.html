@@ -36,18 +36,20 @@
             <a id="swalDoacao" class="nav-link text-white" href="#scrollDinheiro">Doações</a>
           </li>
           <li class="nav-item">
-            <a id="swalPerfil" class="nav-link text-white" href="#" onclick="showListarUsuario()">Perfil</a>
+            <a id="swalPerfil" class="nav-link text-white" href="#">Perfil</a>
           </li>
           <li class="nav-item">
-            <a id="swalLogin" class="nav-link text-white" href="#">Login</a>
+            <a id="swalLogin" class="nav-link text-white btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModalLogin" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a id="swalCadastro" class="nav-link text-white" href="#">Cadastro</a>
+            <a id="swalCadastro" class="nav-link text-white btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#exampleModalCadastro" href="#">Cadastro</a>
           </li>
           <li class="nav-item">
             <a id="swalSair" class="nav-link text-white" href="#">Sair da Conta</a>
           </li>
-        </ul> 
+        </ul>
       </div>
     </div>
   </nav>
@@ -57,7 +59,75 @@
     <div class="content text-center">
       <h1 class="main-text ">Centro de Doações para Instituições Necessitadas</h1>
     </div>
+    <div class="wrapper"></div>
+    <div class="wave"></div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastre Sua Conta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nomeCadastro" class="col-form-label">Nome completo:</label>
+            <input type="text" class="form-control" id="nomeCadastro">
+          </div>
+          <div class="mb-3">
+            <label for="emailCadastro" class="col-form-label">E-mail:</label>
+            <input type="email" class="form-control" id="emailCadastro">
+          </div>
+          <div class="mb-3">
+            <label for="senhaCadastro" class="col-form-label">Senha:</label>
+            <input type="password" class="form-control" id="senhaCadastro">
+          </div>
+          <div class="mb-3">
+            <label for="celularCadastro" class="col-form-label">Telefone:</label>
+            <input type="tel" class="form-control" id="celularCadastro">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="emailLogin" class="col-form-label">E-mail:</label>
+            <input type="email" class="form-control" id="emailLogin">
+          </div>
+          <div class="mb-3">
+            <label for="senhaLogin" class="col-form-label">Senha:</label>
+            <input type="password" class="form-control" id="senhaLogin">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="logarUsuario()" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <!-- Main Content Area -->
   <div class="container my-5 d-grid gap-5">
