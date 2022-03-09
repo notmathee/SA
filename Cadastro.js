@@ -54,22 +54,37 @@ let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     loginInvalido = true
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: "Sua conta e todos os dados dela ser~~ao exclu´´idos.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Deletar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            listaDeUsuarios.forEach(usuarioExcluir => {
+                if (usuarioExcluir.email == usuarioLogado) {
+                    indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
+                    usuarioLogado = null
+                    listaDeUsuarios.splice(indexArrayUsuario, 1)
+                    localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+                    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
 
-    listaDeUsuarios.forEach(usuarioExcluir => {
-        if (usuarioExcluir.email == usuarioLogado) {
-            indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
-
-            listaDeUsuarios.splice(indexArrayUsuario, 1)
-            usuarioLogado = null
-            loginInvalido = false
-            localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-            window.location.href = "paginaIndex.html"
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.html'
+                        }
+                    })
+                }
+            })
         }
-    })
-    if (loginInvalido) Swal.fire({
-        icon: 'error',
-        title: 'Faça o login primeiro.'
     })
 }
 
@@ -109,12 +124,12 @@ let logarUsuario = () => {
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    
+
     let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
     let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
     let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
     loginInvalido = true
-    
+
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
             nomeCadastroMostrar.innerText = listarDadosUsuario.nome
@@ -129,18 +144,17 @@ let listarUsuario = () => {
     })
 }
 
-
 let atualizarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    
-    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
-    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
-    
-    listaDeUsuarios.forEach(editarDadosUsuario => {
-        if (usuarioLogado == editarDadosUsuario.email) {
-            nomeCadastroEditar.value = editarDadosUsuario.nome
-            celularCadastroEditar.value = editarDadosUsuario.celular
+
+    nomeListado = document.getElementById('nomeCadastroEditar')
+    celularListado = document.getElementById('celularCadastroEditar')
+
+    listaDeUsuarios.forEach(listarDadosUsuario => {
+        if (usuarioLogado == listarDadosUsuario.email) {
+            nomeListado.value = listarDadosUsuario.nome
+            celularListado.value = listarDadosUsuario.celular
         }
     })
 }
@@ -149,38 +163,52 @@ let editarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
+    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
+    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
+
     let arrayCadastroEditar = [
-        document.getElementById('nomeCadastroEditar').value,
-        document.getElementById('celularCadastroEditar').value,
+        nomeCadastroEditar.value,
+        celularCadastroEditar.value,
     ]
-    
+
     for (i = 0; i < arrayCadastroEditar.length; i++) {
         if (arrayCadastroEditar[i] == '') return Swal.fire({
             icon: 'error',
             title: 'Todos os campos precisam ser preenchidos.'
         })
     }
-    
+
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (editarDadosUsuario.email == usuarioLogado) {
-            editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
-            editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
+            editarDadosUsuario.nome = nomeCadastroEditar.value
+            editarDadosUsuario.celular = celularCadastroEditar.value
         }
     })
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-    Swal.fire('Dados atualizados.')
-
-    window.location.href = 'paginaAtualizar.html'
+    Swal.fire('Dados atualizados.').then((result => {
+        if (result.isConfirmed) {
+            window.location.href = 'paginaListar.html'
+        }
+    }))
 }
 
 let redefinirSenha = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let novaSenha = document.getElementById('novaSenha')
-    let repetirNovaSenha = document.getElementById('repetirNovaSenha')
-    let emailRedefinirSenha = document.getElementById('emailRedefinirSenha')
+    let novaSenha = document.getElementById('redefinirSenha')
+    let repetirNovaSenha = document.getElementById('confirmarSenha')
+    let emailRedefinirSenha = document.getElementById('confirmarEmail')
+
+    for (let i = 0; i < listaDeUsuarios.length; i++) {
+        if (novaSenha.value == listaDeUsuarios[i].senha) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Esta senha ´´e do cadastro'
+            })
+        }
+    }
 
     for (let i = 0; i < listaDeUsuarios.length; i++) {
         if (novaSenha.value == repetirNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
@@ -208,7 +236,7 @@ let showListarUsuario = () => {
     window.location.href = "paginaListar.html"
 }
 
-let showAtualizarUsuario = () => {
+let showEditarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     if (usuarioLogado == null) return Swal.fire({
         icon: 'error',
@@ -218,6 +246,11 @@ let showAtualizarUsuario = () => {
 }
 
 let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
+
+let atualizarListarUsuarios = () => {
+    atualizarUsuario()
+    listarUsuario()
+}
 
 document.getElementById('swalSair').addEventListener('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))

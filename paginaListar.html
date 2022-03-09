@@ -12,7 +12,7 @@
     
 </head>
 
-<body onload="listarUsuario()">
+<body onload="atualizarListarUsuarios()">
     <header>
         <h1>CEDIM</h1>
     </header>
@@ -25,9 +25,71 @@
     <label for="">Celular:</label>
     <p type="text" id="celularCadastroMostrar"></p>
 
+    <div class="modal fade" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+    
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nomeCadastroEditar" class="col-form-label">Mudar Nome:</label>
+                <input type="email" class="form-control" id="nomeCadastroEditar">
+              </div>
+              <div class="mb-3">
+                <label for="celularCadastroEditar" class="col-form-label">Mudar Telefone:</label>
+                <input type="password" class="form-control" id="celularCadastroEditar">
+              </div>
+            </div>
+    
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" onclick="editarUsuario()" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+    
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="redefinirSenha" class="col-form-label">Digite Seu Email:</label>
+                <input type="email" class="form-control" id="confirmarEmail">
+              </div>
+              <div class="mb-3">
+                <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
+                <input type="email" class="form-control" id="redefinirSenha">
+              </div>
+              <div class="mb-3">
+                <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
+                <input type="password" class="form-control" id="confirmarSenha">
+              </div>
+            </div>
+    
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <button type="button" onclick="excluirUsuario()">Excluir usuário</button>
 
-    <button type="button" onclick="showAtualizarUsuario()">Editar usuário</button>
+    <button type="button" id="editar-btn" data-bs-toggle="modal"
+    data-bs-target="#exampleModalEditar">Editar usuário</button>
+
+    <button type="button" id="redefinir-btn" data-bs-toggle="modal"
+    data-bs-target="#exampleModalRedefinir">Redefinir Senha</button>
 
     <script src="./Cadastro.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
