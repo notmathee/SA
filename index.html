@@ -77,7 +77,7 @@
             <input type="text" class="form-control" id="nomeCadastro">
           </div>
           <div class="mb-3">
-            <label for="emailCadastro" class="col-form-label">E-mail:</label>
+            <label for="emailCadastro" class="col-form-label">Email:</label>
             <input type="email" class="form-control" id="emailCadastro">
           </div>
           <div class="mb-3">
@@ -88,9 +88,62 @@
             <label for="celularCadastro" class="col-form-label">Telefone:</label>
             <input type="tel" class="form-control" id="celularCadastro">
           </div>
+          <div class="mb-3">
+            <label for="celularCadastro" class="col-form-label">CPF:</label>
+            <input type="number" class="form-control" id="cpfCadastro">
+          </div>
+          <div class="mb-3">
+            <label for="nascimentoCadastro" class="col-form-label">Data de nascimento:</label>
+            <input type="number" class="form-control" id="nascimentoCadastro">
+          </div>
         </div>
 
         <div class="modal-footer">
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastroEmpresa" 
+          autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
+          class="btn-redefinir btn btn-secondary">Cadastrar Instituição</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalCadastroEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastre Sua Instituição</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nomeEmpresa" class="col-form-label">Nome empresarial:</label>
+            <input type="text" class="form-control" id="nomeEmpresa">
+          </div>
+          <div class="mb-3">
+            <label for="senhaEmpresa" class="col-form-label">Senha:</label>
+            <input type="password" class="form-control" id="senhaEmpresa">
+          </div>
+          <div class="mb-3">
+            <label for="municipio" class="col-form-label">Município:</label>
+            <input type="text" class="form-control" id="municipio">
+          </div>
+          <div class="mb-3">
+            <label for="celularCadastro" class="col-form-label">Data de abertura:</label>
+            <input type="tel" class="form-control" id="dataAbertura">
+          </div>
+          <div class="mb-3">
+            <label for="numeroInscricao" class="col-form-label">Número de inscrição:</label>
+            <input type="number" class="form-control" id="numeroInscricao">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastro" 
+          autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
+          class="btn-redefinir btn btn-secondary">Cadastrar Conta</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
         </div>
@@ -118,7 +171,9 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" data-bs-dismiss="modal" data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" 
+          data-bs-dismiss="modal" data-bs-toggle="modal" 
+          class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="logarUsuario()" class="btn btn-primary">Cadastrar</button>
         </div>
@@ -184,6 +239,7 @@
       </p>
     </div>
   </div>
+
   <script src="./Cadastro.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 </body>

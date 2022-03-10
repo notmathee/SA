@@ -1,16 +1,21 @@
 let listaDeUsuarios = []
 let usuarioLogado
 
+let empresa = {
+    nomeEmpresa: '',
+    senhaEmpresa: '',
+    municipio: '',
+    dataAbertura: '',
+    numeroInscricao: '',
+}
+
 let usuario = {
     nome: '',
     email: '',
     senha: '',
     celular: '',
-}
-
-let cpfCnpj = {
     cpf: '',
-    cnpj: '',
+    dataNascimento: '',
 }
 
 let adicionarUsuario = () => {
@@ -19,36 +24,94 @@ let adicionarUsuario = () => {
         email: document.getElementById('emailCadastro').value,
         senha: document.getElementById('senhaCadastro').value,
         celular: document.getElementById('celularCadastro').value,
+        cpf: document.getElementById('cpfCadastro').value,
+        dataNascimento: document.getElementById('nascimentoCadastro').value
+    }
+
+    let empresa = {
+        nomeEmpresa: document.getElementById('nomeEmpresa').value,
+        senhaEmpresa: document.getElementById('senhaEmpresa').value,
+        municipio: document.getElementById('municipio').value,
+        dataAbertura: document.getElementById('dataAbertura').value,
+        numeroInscricao: document.getElementById('numeroInscricao').value
     }
 
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
+
+    verificarUsuarioPreencher = [
+        nome,
+        email,
+        senha,
+        celular,
+        cpf,
+        dataNascimento,
+    ]
+    verificarEmpresaPreencher = [
+        nomeEmpresa,
+        senhaEmpresa,
+        municipio,
+        dataAbertura,
+        numeroInscricao,
+    ]
 
     if (listaDeUsuarios == null) {
         listaDeUsuarios = []
     }
-    if (usuario.nome == '' || usuario.email == '' || usuario.senha == '' || usuario.celular == '') {
-        return Swal.fire({
-            icon: 'error',
-            title: 'Todos os campos precisam ser preenchidos!'
-        })
-    } else {
-        emailValido = true
-        listaDeUsuarios.forEach(usuarioCadastro => {
-            if (usuarioCadastro.email == usuario.email) {
-                emailValido = false
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Este email já está cadastrado.'
-                })
-            }
-        })
-        if (emailValido) {
-            listaDeUsuarios.push(usuario)
-            localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            Swal.fire('Dados salvos.')
+    if (listaDeEmpresas == null) {
+        listaDeEmpresas = []
+    }
+
+    for (let i = 0; i < verificarUsuarioPreencher.length; i++) {
+        if (verificarUsuarioPreencher[i] == '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Todos os campos precisam ser preenchidos!'
+            })
         }
     }
+    for (let i = 0; i < verificarEmpresaPreencher.length; i++) {
+        if (verificarEmpresaPreencher[i] == '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Todos os campos precisam ser preenchidos!'
+            })
+        }
+    }
+
+    emailValido = true
+    listaDeUsuarios.forEach(usuarioCadastro => {
+        if (usuarioCadastro.email == usuario.email) {
+            emailValido = false
+            Swal.fire({
+                icon: 'error',
+                title: 'Este email já está cadastrado.'
+            })
+        }
+    })
+    inscricaoValida = true
+    listaDeEmpresas.forEach(empresaCadastro => {
+        if (empresaCadastro.numeroInscricao == empresa.numeroInscricao) {
+            emailValido = false
+            Swal.fire({
+                icon: 'error',
+                title: 'Este número de inscrição já está cadastrado.'
+            })
+        }
+    })
+
+    if (emailValido) {
+        listaDeUsuarios.push(usuario)
+        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+        Swal.fire('Dados salvos.')
+    }
+    if (inscricaoValida) {
+        listaDeEmpresas.push(empresa)
+        localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
+        Swal.fire('Dados salvos.')
+    }
 }
+
 
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
