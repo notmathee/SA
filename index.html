@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CEDIM - P´´agina Inicial</title>
+  <title>CEDIM - Página Inicial</title>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/index.css">
@@ -59,6 +59,7 @@
     <div class="content text-center">
       <h1 class="main-text ">Centro de Doações para Instituições Necessitadas</h1>
     </div>
+    <div class="texto-banner"></div>
   </div>
 
   <!-- Modal -->
@@ -117,6 +118,7 @@
         </div>
 
         <div class="modal-footer">
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" data-bs-dismiss="modal" data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="logarUsuario()" class="btn btn-primary">Cadastrar</button>
         </div>
@@ -124,8 +126,36 @@
     </div>
   </div>
 
+  <div class="modal fade" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="redefinirSenha" class="col-form-label">Digite Seu Email:</label>
+            <input type="email" class="form-control" id="confirmarEmail">
+          </div>
+          <div class="mb-3">
+            <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
+            <input type="password" class="form-control" id="redefinirSenha">
+          </div>
+          <div class="mb-3">
+            <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
+            <input type="password" class="form-control" id="confirmarSenha">
+          </div>
+        </div>
 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content Area -->
   <div class="container my-5 d-grid gap-5">
