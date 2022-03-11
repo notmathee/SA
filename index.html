@@ -39,8 +39,8 @@
             <a id="swalPerfil" class="nav-link text-white" href="#">Perfil</a>
           </li>
           <li class="nav-item">
-            <a id="swalLogin" class="nav-link text-white btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#exampleModalLogin" href="#">Login</a>
+            <a id="swalLogin" class="nav-link text-white btn btn-primary" onclick="checarLogin()" data-bs-toggle="modal"
+              data-bs-target="#exampleModalLogin" href="#">Login</a>
           </li>
           <li class="nav-item">
             <a id="swalCadastro" class="nav-link text-white btn btn-primary" data-bs-toggle="modal"
@@ -63,11 +63,12 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cadastre Sua Conta</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Cadastre Como Usuário</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -99,9 +100,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastroEmpresa" 
-          autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
-          class="btn-redefinir btn btn-secondary">Cadastrar Instituição</button>
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastroEmpresa" autofocus
+            data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Tenho instituição</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
         </div>
@@ -109,11 +109,12 @@
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModalCadastroEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCadastroEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cadastre Sua Instituição</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Cadastre Como Instituição</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -127,8 +128,8 @@
             <input type="password" class="form-control" id="senhaEmpresa">
           </div>
           <div class="mb-3">
-            <label for="municipio" class="col-form-label">Município:</label>
-            <input type="text" class="form-control" id="municipio">
+            <label for="municipioEmpresa" class="col-form-label">Município:</label>
+            <input type="text" class="form-control" id="municipioEmpresa">
           </div>
           <div class="mb-3">
             <label for="celularCadastro" class="col-form-label">Data de abertura:</label>
@@ -141,11 +142,10 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastro" 
-          autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
-          class="btn-redefinir btn btn-secondary">Cadastrar Conta</button>
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalCadastro" autofocus
+            data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Sou usuário</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
+          <button type="button" onclick="adicionarEmpresa()" class="btn btn-primary">Cadastrar</button>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Logar como Usuário</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -171,21 +171,55 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" 
-          data-bs-dismiss="modal" data-bs-toggle="modal" 
-          class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
+          <button type="button" id="loginUsuario-btn" data-bs-target="#exampleModalLoginEmpresa" data-bs-dismiss="modal"
+            data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Entrar com instituição</button>
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" data-bs-dismiss="modal"
+            data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="logarUsuario()" class="btn btn-primary">Cadastrar</button>
+          <button type="button" onclick="logarUsuario()" class="btn btn-primary">Logar</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModalLoginEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Logar Como Instituição</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="numeroInscricaoLogin" class="col-form-label">Número de inscrição:</label>
+            <input type="number" class="form-control" id="numeroInscricaoLogin">
+          </div>
+          <div class="mb-3">
+            <label for="senhaEmpresaLogin" class="col-form-label">Senha:</label>
+            <input type="password" class="form-control" id="senhaEmpresaLogin">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="loginUsuario-btn" data-bs-target="#exampleModalLogin" data-bs-dismiss="modal"
+            data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Entrar com usuário</button>
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" data-bs-dismiss="modal"
+            data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="logarEmpresa()" class="btn btn-primary">Logar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -205,8 +239,46 @@
         </div>
 
         <div class="modal-footer">
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinirEmpresa" autofocus
+            data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Senha da
+            Instituição</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Cadastrar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalRedefinirEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha da Instituição</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="redefinirSenha" class="col-form-label">Digite Seu Número de Inscrição:</label>
+            <input type="number" class="form-control" id="numeroInscricaoRedefinirSenha">
+          </div>
+          <div class="mb-3">
+            <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
+            <input type="password" class="form-control" id="redefinirSenhaEmpresa">
+          </div>
+          <div class="mb-3">
+            <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
+            <input type="password" class="form-control" id="confirmarSenhaEmpresa">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" autofocus
+            data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Senha do
+            Usuário</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
         </div>
       </div>
     </div>

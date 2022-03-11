@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/paginaListar.css">
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 </head>
 
@@ -23,6 +23,9 @@
   <div class="container">
 
     <div class="informacoes">
+
+      <!-- usuario -->
+
       <label for="">Nome:</label>
       <p type="text" id="nomeCadastroMostrar"></p>
 
@@ -31,6 +34,26 @@
 
       <label for="">Celular:</label>
       <p type="text" id="celularCadastroMostrar"></p>
+
+      <label for="">CPF:</label>
+      <p type="text" id="cpfCadastroMostrar"></p>
+
+      <label for="">Data de nascimento:</label>
+      <p type="text" id="dataNascimentoMostrar"></p>
+
+      <!-- empresa -->
+
+      <label for="">Nome empresarial:</label>
+      <p type="text" id="nomeEmpresaMostrar"></p>
+
+      <label for="">Município:</label>
+      <p type="text" id="municipioEmpresaMostrar"></p>
+
+      <label for="">Data de abertura:</label>
+      <p type="text" id="dataAberturaMostrar"></p>
+
+      <label for="">Numero de inscrição:</label>
+      <p type="text" id="numeroInscricaoMostrar"></p>
     </div>
 
     <!-- modals -->
@@ -46,18 +69,22 @@
 
           <div class="modal-body">
             <div class="mb-3">
-              <label for="nomeCadastroEditar" class="col-form-label">Mudar Nome:</label>
+              <label for="nomeCadastroEditar" class="col-form-label">Mudar nome:</label>
               <input type="email" class="form-control" id="nomeCadastroEditar">
             </div>
             <div class="mb-3">
-              <label for="celularCadastroEditar" class="col-form-label">Mudar Telefone:</label>
+              <label for="celularCadastroEditar" class="col-form-label">Mudar telefone:</label>
               <input type="password" class="form-control" id="celularCadastroEditar">
+            </div>
+            <div class="mb-3">
+              <label for="dataNascimentoEditar" class="col-form-label">Mudar data de nascimento:</label>
+              <input type="password" class="form-control" id="dataNascimentoEditar">
             </div>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" onclick="editarUsuario()" class="btn btn-primary">Cadastrar</button>
+            <button type="button" onclick="editarUsuario()" class="btn btn-primary">Atualizar</button>
           </div>
         </div>
       </div>
@@ -68,7 +95,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha do Usuário</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -79,7 +106,7 @@
             </div>
             <div class="mb-3">
               <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
-              <input type="email" class="form-control" id="redefinirSenha">
+              <input type="password" class="form-control" id="redefinirSenha">
             </div>
             <div class="mb-3">
               <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
@@ -88,8 +115,46 @@
           </div>
 
           <div class="modal-footer">
+            <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinirEmpresa" 
+            autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
+            class="btn-redefinir btn btn-secondary">Senha da Instituição</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Cadastrar</button>
+            <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalRedefinirEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha da Instituição</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="redefinirSenha" class="col-form-label">Digite Seu Número de Inscrição:</label>
+              <input type="number" class="form-control" id="numeroInscricaoRedefinirSenha">
+            </div>
+            <div class="mb-3">
+              <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
+              <input type="password" class="form-control" id="redefinirSenha">
+            </div>
+            <div class="mb-3">
+              <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
+              <input type="password" class="form-control" id="confirmarSenha">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" 
+            autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
+            class="btn-redefinir btn btn-secondary">Senha do Usuário</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
           </div>
         </div>
       </div>
@@ -98,13 +163,13 @@
     <!-- modals -->
 
     <div class="btn">
-      <button type="button" onclick="excluirUsuario()">Excluir usuário</button>
+      <button type="button" onclick="excluirUsuario()">Excluir conta</button>
 
       <button type="button" id="editar-btn" data-bs-toggle="modal" data-bs-target="#exampleModalEditar">Editar
-        usuário</button>
+        conta</button>
 
       <button type="button" id="redefinir-btn" data-bs-toggle="modal" data-bs-target="#exampleModalRedefinir">Redefinir
-        Senha</button>
+        senha</button>
     </div>
   </div>
 

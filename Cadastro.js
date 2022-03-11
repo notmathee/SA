@@ -4,7 +4,7 @@ let usuarioLogado
 let empresa = {
     nomeEmpresa: '',
     senhaEmpresa: '',
-    municipio: '',
+    municipioEmpresa: '',
     dataAbertura: '',
     numeroInscricao: '',
 }
@@ -25,53 +25,26 @@ let adicionarUsuario = () => {
         senha: document.getElementById('senhaCadastro').value,
         celular: document.getElementById('celularCadastro').value,
         cpf: document.getElementById('cpfCadastro').value,
-        dataNascimento: document.getElementById('nascimentoCadastro').value
-    }
-
-    let empresa = {
-        nomeEmpresa: document.getElementById('nomeEmpresa').value,
-        senhaEmpresa: document.getElementById('senhaEmpresa').value,
-        municipio: document.getElementById('municipio').value,
-        dataAbertura: document.getElementById('dataAbertura').value,
-        numeroInscricao: document.getElementById('numeroInscricao').value
+        dataNascimento: document.getElementById('nascimentoCadastro').value,
     }
 
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
-    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
 
     verificarUsuarioPreencher = [
-        nome,
-        email,
-        senha,
-        celular,
-        cpf,
-        dataNascimento,
-    ]
-    verificarEmpresaPreencher = [
-        nomeEmpresa,
-        senhaEmpresa,
-        municipio,
-        dataAbertura,
-        numeroInscricao,
+        usuario.nome,
+        usuario.email,
+        usuario.senha,
+        usuario.celular,
+        usuario.cpf,
+        usuario.dataNascimento,
     ]
 
     if (listaDeUsuarios == null) {
         listaDeUsuarios = []
     }
-    if (listaDeEmpresas == null) {
-        listaDeEmpresas = []
-    }
 
     for (let i = 0; i < verificarUsuarioPreencher.length; i++) {
         if (verificarUsuarioPreencher[i] == '') {
-            return Swal.fire({
-                icon: 'error',
-                title: 'Todos os campos precisam ser preenchidos!'
-            })
-        }
-    }
-    for (let i = 0; i < verificarEmpresaPreencher.length; i++) {
-        if (verificarEmpresaPreencher[i] == '') {
             return Swal.fire({
                 icon: 'error',
                 title: 'Todos os campos precisam ser preenchidos!'
@@ -89,10 +62,48 @@ let adicionarUsuario = () => {
             })
         }
     })
+
+    if (emailValido) {
+        listaDeUsuarios.push(usuario)
+        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+        Swal.fire('Dados salvos.')
+    }
+}
+
+let adicionarEmpresa = () => {
+    let empresa = {
+        nomeEmpresa: document.getElementById('nomeEmpresa').value,
+        senhaEmpresa: document.getElementById('senhaEmpresa').value,
+        municipioEmpresa: document.getElementById('municipioEmpresa').value,
+        dataAbertura: document.getElementById('dataAbertura').value,
+        numeroInscricao: document.getElementById('numeroInscricao').value,
+    }
+
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
+
+    verificarEmpresaPreencher = [
+        empresa.nomeEmpresa,
+        empresa.senhaEmpresa,
+        empresa.municipioEmpresa,
+        empresa.dataAbertura,
+        empresa.numeroInscricao,
+    ]
+
+    if (listaDeEmpresas == null) listaDeEmpresas = []
+
+    for (let i = 0; i < verificarEmpresaPreencher.length; i++) {
+        if (verificarEmpresaPreencher[i] == '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Todos os campos precisam ser preenchidos!'
+            })
+        }
+    }
+
     inscricaoValida = true
     listaDeEmpresas.forEach(empresaCadastro => {
         if (empresaCadastro.numeroInscricao == empresa.numeroInscricao) {
-            emailValido = false
+            inscricaoValida = false
             Swal.fire({
                 icon: 'error',
                 title: 'Este número de inscrição já está cadastrado.'
@@ -100,11 +111,6 @@ let adicionarUsuario = () => {
         }
     })
 
-    if (emailValido) {
-        listaDeUsuarios.push(usuario)
-        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-        Swal.fire('Dados salvos.')
-    }
     if (inscricaoValida) {
         listaDeEmpresas.push(empresa)
         localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
@@ -114,12 +120,14 @@ let adicionarUsuario = () => {
 
 
 let excluirUsuario = () => {
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     loginInvalido = true
+
     Swal.fire({
         title: 'Tem certeza?',
-        text: "Sua conta e todos os dados dela ser~~ao exclu´´idos.",
+        text: "Sua conta e todos os dados dela serão excluídos.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -133,16 +141,35 @@ let excluirUsuario = () => {
                     indexArrayUsuario = listaDeUsuarios.indexOf(usuarioExcluir)
                     usuarioLogado = null
                     listaDeUsuarios.splice(indexArrayUsuario, 1)
+
                     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
                     localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
 
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    ).then((result) => {
+                    Swal.fire({
+                        title: 'Sua conta foi deletada.',
+                        icon: 'success',
+                    }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = 'index.html'
+                            window.location.href = './index.html'
+                        }
+                    })
+                }
+            })
+            listaDeEmpresas.forEach(empresaExcluir => {
+                if (empresaExcluir.numeroInscricao == usuarioLogado) {
+                    indexArrayEmpresa = listaDeEmpresas.indexOf(empresaExcluir)
+                    usuarioLogado = null
+                    listaDeEmpresas.splice(indexArrayEmpresa, 1)
+
+                    localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
+                    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+
+                    Swal.fire({
+                        title: 'Sua conta foi deletada.',
+                        icon: 'success',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = './index.html'
                         }
                     })
                 }
@@ -176,6 +203,7 @@ let logarUsuario = () => {
             return Swal.fire('Login efetuado.')
         }
     })
+
     if (loginInvalido) {
         return Swal.fire({
             icon: 'error',
@@ -184,23 +212,84 @@ let logarUsuario = () => {
     }
 }
 
-let listarUsuario = () => {
-    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+let logarEmpresa = () => {
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let nomeCadastroMostrar = document.getElementById('nomeCadastroMostrar')
-    let emailCadastroMostrar = document.getElementById('emailCadastroMostrar')
-    let celularCadastroMostrar = document.getElementById('celularCadastroMostrar')
+    let numeroInscricaoLogin = document.getElementById('numeroInscricaoLogin').value
+    let senhaEmpresaLogin = document.getElementById('senhaEmpresaLogin').value
+    loginInvalido = true
+
+    if (numeroInscricaoLogin == '' || senhaEmpresaLogin == '') return Swal.fire({
+        icon: 'error',
+        title: 'Todos os campos precisam ser preenchidos!'
+    })
+    if (numeroInscricaoLogin == usuarioLogado) return Swal.fire({
+        icon: 'error',
+        title: 'Você já está logado.',
+    })
+
+    listaDeEmpresas.forEach(empresaLogin => {
+        if (empresaLogin.numeroInscricao == numeroInscricaoLogin &&
+            empresaLogin.senhaEmpresa == senhaEmpresaLogin) {
+            usuarioLogado = numeroInscricaoLogin
+            loginInvalido = false
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            return Swal.fire('Login efetuado.')
+        }
+    })
+
+    if (loginInvalido) {
+        return Swal.fire({
+            icon: 'error',
+            title: 'Número de inscrição ou senha incorretos.'
+        })
+    }
+}
+
+let checarLogin = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+    if (usuarioLogado != null) {
+
+        return Swal.fire({
+            icon: 'error',
+            title: 'Você já está logado.',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = './index.html'
+            }
+        })
+    }
+}
+
+let listarUsuario = () => {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
     loginInvalido = true
 
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
-            nomeCadastroMostrar.innerText = listarDadosUsuario.nome
-            emailCadastroMostrar.innerText = listarDadosUsuario.email
-            celularCadastroMostrar.innerText = listarDadosUsuario.celular
+            document.getElementById('nomeCadastroMostrar').innerText = listarDadosUsuario.nome
+            document.getElementById('emailCadastroMostrar').innerText = listarDadosUsuario.email
+            document.getElementById('celularCadastroMostrar').innerText = listarDadosUsuario.celular
+            document.getElementById('cpfCadastroMostrar').innerText = listarDadosUsuario.cpf
+            document.getElementById('dataNascimentoMostrar').innerText = listarDadosUsuario.dataNascimento
             return loginInvalido = false
         }
     })
+    listaDeEmpresas.forEach(listarDadosEmpresa => {
+        if (usuarioLogado == listarDadosEmpresa.numeroInscricao) {
+            document.getElementById('nomeEmpresaMostrar').innerText = listarDadosEmpresa.nomeEmpresa
+            document.getElementById('municipioEmpresaMostrar').innerText = listarDadosEmpresa.municipioEmpresa
+            document.getElementById('dataAberturaMostrar').innerText = listarDadosEmpresa.dataAbertura
+            document.getElementById('numeroInscricaoMostrar').innerText = listarDadosEmpresa.numeroInscricao
+            return loginInvalido = false
+        }
+    })
+
     if (loginInvalido) return Swal.fire({
         icon: 'error',
         title: 'Primeiro, faça login.'
@@ -211,13 +300,11 @@ let atualizarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    nomeListado = document.getElementById('nomeCadastroEditar')
-    celularListado = document.getElementById('celularCadastroEditar')
-
     listaDeUsuarios.forEach(listarDadosUsuario => {
         if (usuarioLogado == listarDadosUsuario.email) {
-            nomeListado.value = listarDadosUsuario.nome
-            celularListado.value = listarDadosUsuario.celular
+            document.getElementById('nomeCadastroEditar').value = listarDadosUsuario.nome
+            document.getElementById('celularCadastroEditar').value = listarDadosUsuario.celular
+            document.getElementById('dataNascimentoEditar').value = listarDadosUsuario.dataNascimento
         }
     })
 }
@@ -226,12 +313,10 @@ let editarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    let nomeCadastroEditar = document.getElementById('nomeCadastroEditar')
-    let celularCadastroEditar = document.getElementById('celularCadastroEditar')
-
     let arrayCadastroEditar = [
-        nomeCadastroEditar.value,
-        celularCadastroEditar.value,
+        document.getElementById('nomeCadastroEditar').value,
+        document.getElementById('celularCadastroEditar').value,
+        document.getElementById('dataNascimentoEditar').value,
     ]
 
     for (i = 0; i < arrayCadastroEditar.length; i++) {
@@ -243,8 +328,9 @@ let editarUsuario = () => {
 
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (editarDadosUsuario.email == usuarioLogado) {
-            editarDadosUsuario.nome = nomeCadastroEditar.value
-            editarDadosUsuario.celular = celularCadastroEditar.value
+            editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
+            editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
+            editarDadosUsuario.dataNascimento = document.getElementById('dataNascimentoEditar').value
         }
     })
     localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
@@ -258,35 +344,64 @@ let editarUsuario = () => {
 
 let redefinirSenha = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     let novaSenha = document.getElementById('redefinirSenha')
-    let repetirNovaSenha = document.getElementById('confirmarSenha')
+    let confirmarNovaSenha = document.getElementById('confirmarSenha')
     let emailRedefinirSenha = document.getElementById('confirmarEmail')
+
+    let numeroInscricaoRedefinirSenha = document.getElementById('numeroInscricaoRedefinirSenha')
+    let novaSenhaEmpresa = document.getElementById('redefinirSenhaEmpresa')
+    let confirmarNovaSenhaEmpresa = document.getElementById('confirmarSenhaEmpresa')
 
     for (let i = 0; i < listaDeUsuarios.length; i++) {
         if (novaSenha.value == listaDeUsuarios[i].senha) {
             return Swal.fire({
                 icon: 'error',
-                title: 'Esta senha ´´e do cadastro'
+                title: 'Essa é a sua senha atual.'
+            })
+        }
+    }
+    for (let i = 0; i < listaDeEmpresas.length; i++) {
+        if (novaSenha.value == listaDeEmpresas[i].senha) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Essa é a sua senha atual.'
             })
         }
     }
 
     for (let i = 0; i < listaDeUsuarios.length; i++) {
-        if (novaSenha.value == repetirNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
+        if (novaSenha.value == confirmarNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
             listaDeUsuarios[i].senha = novaSenha.value
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
             return Swal.fire('Senha redefinida.')
         }
     }
-    if (novaSenha.value != repetirNovaSenha.value) Swal.fire({
+    for (let i = 0; i < listaDeEmpresas.length; i++) {
+        if (novaSenhaEmpresa.value == confirmarNovaSenhaEmpresa.value &&
+            listaDeEmpresas[i].numeroInscricao == numeroInscricaoRedefinirSenha.value) {
+            listaDeEmpresas[i].senha = novaSenhaEmpresa.value
+            localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
+            return Swal.fire('Senha redefinida.')
+        }
+    }
+    if (novaSenha.value != confirmarNovaSenha.value) Swal.fire({
         icon: 'error',
         title: 'As senhas não são iguais.'
     })
     else Swal.fire({
         icon: 'error',
         title: 'Este email não está cadastrado.'
+    })
+    if (novaSenhaEmpresa.value != confirmarNovaSenhaEmpresa.value) Swal.fire({
+        icon: 'error',
+        title: 'As senhas não são iguais.'
+    })
+    else Swal.fire({
+        icon: 'error',
+        title: 'Este CNPJ não está cadastrado.'
     })
 }
 
