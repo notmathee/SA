@@ -4,7 +4,6 @@ body, html {
     /* overflow-anchor: none; */
 }
 
-
 .content {
     display: flex;
     background: hsl(0, 0%, 100%, 0.2);
@@ -36,12 +35,6 @@ body, html {
     margin-inline: 1rem;
 }
 
-/* .texto-banner {
-    background-color: white;
-    width: 100%;
-    height: 20%;
-} */
-
 #scrollEmpresa, #scrollDinheiro, #scrollVestimenta, #scrollAlimento {
     height: 2rem;
 }
@@ -52,13 +45,7 @@ body, html {
 
 .modal {
     overflow-y: auto;
-    /* position: fixed; */
 }
-/* 
-body.modal-open {
-    height: 100vh;
-    overflow: hidden;
-} */
 
 .modal-footer {    
     display: grid;
