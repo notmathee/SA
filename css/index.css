@@ -1,8 +1,9 @@
 body, html {
     margin: 0;
     width: 100%;
-    overflow-anchor: none;
+    /* overflow-anchor: none; */
 }
+
 
 .content {
     display: flex;
@@ -48,6 +49,16 @@ body, html {
 #sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
     height: 10rem;
 }
+
+.modal {
+    overflow-y: auto;
+    /* position: fixed; */
+}
+/* 
+body.modal-open {
+    height: 100vh;
+    overflow: hidden;
+} */
 
 .modal-footer {    
     display: grid;

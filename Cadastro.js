@@ -95,7 +95,8 @@ let adicionarEmpresa = () => {
         if (verificarEmpresaPreencher[i] == '') {
             return Swal.fire({
                 icon: 'error',
-                title: 'Todos os campos precisam ser preenchidos!'
+                allowOutsideClick: false,
+                title: 'Todos os campos precisam ser preenchidos!',
             })
         }
     }
@@ -186,6 +187,7 @@ let logarUsuario = () => {
     let senhaLogin = document.getElementById('senhaLogin').value
     loginInvalido = true
 
+
     if (emailLogin == '' || senhaLogin == '') return Swal.fire({
         icon: 'error',
         title: 'Todos os campos precisam ser preenchidos!'
@@ -247,21 +249,43 @@ let logarEmpresa = () => {
     }
 }
 
-let checarLogin = () => {
+$('#swalLogin').on('click', function() {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
-    if (usuarioLogado != null) {
-
-        return Swal.fire({
-            icon: 'error',
-            title: 'Você já está logado.',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = './index.html'
-            }
-        })
+    if (usuarioLogado == null) {
+        return $('#exampleModalLogin').modal("toggle")
     }
-}
+    Swal.fire({
+        icon: 'error',
+        title: 'Você já está logado.',
+    })
+
+})
+
+$('#cadastrar-empresa-btn').on('click', function() {
+    $('#exampleModalCadastroEmpresa').modal('toggle')
+})
+$('#cadastrar-usuario-btn').on('click', function() {
+    $('#exampleModalCadastro').modal('toggle')
+})
+$('#login-empresa-btn').on('click', function() {
+    $('#exampleModalLoginEmpresa').modal('toggle')
+})
+$('#login-usuario-btn').on('click', function() {
+    $('#exampleModalLogin').modal('toggle')
+})
+$('#redefinir-empresa-btn').on('click', function() {
+    $('#exampleModalRedefinirEmpresa').modal('toggle')
+})
+$('#redefinir-usuario-btn').on('click', function() {
+    $('#exampleModalRedefinir').modal('toggle')
+})
+$('#empresa-redefinir-senha-btn').on('click', function() {
+    $('#exampleModalRedefinir').modal('toggle')
+})
+$('#usuario-redefinir-senha-btn').on('click', function() {
+    $('#exampleModalRedefinir').modal('toggle')
+})
 
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
