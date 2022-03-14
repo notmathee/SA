@@ -1,5 +1,6 @@
 let listaDeUsuarios = []
 let usuarioLogado
+let empresaLogado
 
 let empresa = {
     nomeEmpresa: '',
@@ -121,9 +122,10 @@ let adicionarEmpresa = () => {
 
 
 let excluirUsuario = () => {
-    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
     loginInvalido = true
 
     Swal.fire({
@@ -157,13 +159,13 @@ let excluirUsuario = () => {
                 }
             })
             listaDeEmpresas.forEach(empresaExcluir => {
-                if (empresaExcluir.numeroInscricao == usuarioLogado) {
+                if (empresaExcluir.numeroInscricao == empresaLogado) {
                     indexArrayEmpresa = listaDeEmpresas.indexOf(empresaExcluir)
-                    usuarioLogado = null
+                    empresaLogado = null
                     listaDeEmpresas.splice(indexArrayEmpresa, 1)
 
                     localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
-                    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+                    localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
 
                     Swal.fire({
                         title: 'Sua conta foi deletada.',
@@ -216,7 +218,7 @@ let logarUsuario = () => {
 
 let logarEmpresa = () => {
     listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
     let numeroInscricaoLogin = document.getElementById('numeroInscricaoLogin').value
     let senhaEmpresaLogin = document.getElementById('senhaEmpresaLogin').value
@@ -226,7 +228,7 @@ let logarEmpresa = () => {
         icon: 'error',
         title: 'Todos os campos precisam ser preenchidos!'
     })
-    if (numeroInscricaoLogin == usuarioLogado) return Swal.fire({
+    if (numeroInscricaoLogin == empresaLogado) return Swal.fire({
         icon: 'error',
         title: 'Você já está logado.',
     })
@@ -234,9 +236,9 @@ let logarEmpresa = () => {
     listaDeEmpresas.forEach(empresaLogin => {
         if (empresaLogin.numeroInscricao == numeroInscricaoLogin &&
             empresaLogin.senhaEmpresa == senhaEmpresaLogin) {
-            usuarioLogado = numeroInscricaoLogin
+            empresaLogado = numeroInscricaoLogin
             loginInvalido = false
-            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+            localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
             return Swal.fire('Login efetuado.')
         }
     })
@@ -251,10 +253,10 @@ let logarEmpresa = () => {
 
 $('#swalLogin').on('click', function() {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    if (usuarioLogado == null) {
-        return $('#exampleModalLogin').modal("toggle")
-    }
+    if (usuarioLogado == null && empresaLogado == null) return $('#exampleModalLogin').modal("toggle")
+
     Swal.fire({
         icon: 'error',
         title: 'Você já está logado.',
@@ -291,6 +293,7 @@ let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
     loginInvalido = true
 
@@ -305,7 +308,7 @@ let listarUsuario = () => {
         }
     })
     listaDeEmpresas.forEach(listarDadosEmpresa => {
-        if (usuarioLogado == listarDadosEmpresa.numeroInscricao) {
+        if (empresaLogado == listarDadosEmpresa.numeroInscricao) {
             document.getElementById('nomeEmpresaMostrar').innerText = listarDadosEmpresa.nomeEmpresa
             document.getElementById('municipioEmpresaMostrar').innerText = listarDadosEmpresa.municipioEmpresa
             document.getElementById('dataAberturaMostrar').innerText = listarDadosEmpresa.dataAbertura
@@ -335,21 +338,24 @@ let atualizarUsuario = () => {
 
 let editarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    let arrayCadastroEditar = [
+    let arrayCadastroEditarUsuario = [
         document.getElementById('nomeCadastroEditar').value,
         document.getElementById('celularCadastroEditar').value,
         document.getElementById('dataNascimentoEditar').value,
     ]
 
-    for (i = 0; i < arrayCadastroEditar.length; i++) {
-        if (arrayCadastroEditar[i] == '') return Swal.fire({
+    for (i = 0; i < arrayCadastroEditarUsuario.length; i++) {
+        if (arrayCadastroEditarUsuario[i] == '') return Swal.fire({
             icon: 'error',
             title: 'Todos os campos precisam ser preenchidos.'
         })
     }
 
+    if (usuarioLogado != null) {}
     listaDeUsuarios.forEach(editarDadosUsuario => {
         if (editarDadosUsuario.email == usuarioLogado) {
             editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
@@ -364,6 +370,10 @@ let editarUsuario = () => {
             window.location.href = 'paginaListar.html'
         }
     }))
+
+    if (empresaLogado != null) {
+        
+    }
 }
 
 let redefinirSenha = () => {
@@ -470,9 +480,12 @@ document.getElementById('swalSair').addEventListener('click', function () {
 
 document.getElementById('swalPerfil').addEventListener('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return Swal.fire({
+    
+    if (usuarioLogado != null) return window.location.href = "paginaListar.html"
+    if (empresaLogado != null) return window.location.href = "paginaListarEmpresa.html"
+
+    Swal.fire({
         icon: 'error',
-        title: 'Primeiro, faça o login ou cadastre uma conta.',
+        title: 'Primeiro, faça login ou cadastre uma conta.',
     })
-    window.location.href = "paginaListar.html"
 })
