@@ -120,6 +120,9 @@ let adicionarEmpresa = () => {
     }
 }
 
+$('#swalCadastro').on('click', function () {
+
+})
 
 let excluirUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
@@ -184,6 +187,7 @@ let excluirUsuario = () => {
 let logarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
     let emailLogin = document.getElementById('emailLogin').value
     let senhaLogin = document.getElementById('senhaLogin').value
@@ -194,7 +198,7 @@ let logarUsuario = () => {
         icon: 'error',
         title: 'Todos os campos precisam ser preenchidos!'
     })
-    if (emailLogin == usuarioLogado) return Swal.fire({
+    if (emailLogin == usuarioLogado || empresaLogado != null) return Swal.fire({
         icon: 'error',
         title: 'Você já está logado.',
     })
@@ -228,7 +232,7 @@ let logarEmpresa = () => {
         icon: 'error',
         title: 'Todos os campos precisam ser preenchidos!'
     })
-    if (numeroInscricaoLogin == empresaLogado) return Swal.fire({
+    if (numeroInscricaoLogin == empresaLogado || usuarioLogado != null) return Swal.fire({
         icon: 'error',
         title: 'Você já está logado.',
     })
@@ -251,7 +255,7 @@ let logarEmpresa = () => {
     }
 }
 
-$('#swalLogin').on('click', function() {
+$('#swalLogin').on('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
@@ -261,40 +265,36 @@ $('#swalLogin').on('click', function() {
         icon: 'error',
         title: 'Você já está logado.',
     })
-
 })
 
-$('#cadastrar-empresa-btn').on('click', function() {
+$('#cadastrar-empresa-btn').on('click', function () {
     $('#exampleModalCadastroEmpresa').modal('toggle')
 })
-$('#cadastrar-usuario-btn').on('click', function() {
+$('#cadastrar-usuario-btn').on('click', function () {
     $('#exampleModalCadastro').modal('toggle')
 })
-$('#login-empresa-btn').on('click', function() {
+$('#login-empresa-btn').on('click', function () {
     $('#exampleModalLoginEmpresa').modal('toggle')
 })
-$('#login-usuario-btn').on('click', function() {
+$('#login-usuario-btn').on('click', function () {
     $('#exampleModalLogin').modal('toggle')
 })
-$('#redefinir-empresa-btn').on('click', function() {
+$('#redefinir-empresa-btn').on('click', function () {
     $('#exampleModalRedefinirEmpresa').modal('toggle')
 })
-$('#redefinir-usuario-btn').on('click', function() {
+$('#redefinir-usuario-btn').on('click', function () {
     $('#exampleModalRedefinir').modal('toggle')
 })
-$('#empresa-redefinir-senha-btn').on('click', function() {
+$('#empresa-redefinir-senha-btn').on('click', function () {
     $('#exampleModalRedefinir').modal('toggle')
 })
-$('#usuario-redefinir-senha-btn').on('click', function() {
+$('#usuario-redefinir-senha-btn').on('click', function () {
     $('#exampleModalRedefinir').modal('toggle')
 })
 
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
-    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
-
     loginInvalido = true
 
     listaDeUsuarios.forEach(listarDadosUsuario => {
@@ -307,6 +307,18 @@ let listarUsuario = () => {
             return loginInvalido = false
         }
     })
+
+    if (loginInvalido) return Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, faça login.'
+    })
+}
+
+let listarEmpresa = () => {
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+    loginInvalido = true
+
     listaDeEmpresas.forEach(listarDadosEmpresa => {
         if (empresaLogado == listarDadosEmpresa.numeroInscricao) {
             document.getElementById('nomeEmpresaMostrar').innerText = listarDadosEmpresa.nomeEmpresa
@@ -351,35 +363,37 @@ let editarUsuario = () => {
     for (i = 0; i < arrayCadastroEditarUsuario.length; i++) {
         if (arrayCadastroEditarUsuario[i] == '') return Swal.fire({
             icon: 'error',
-            title: 'Todos os campos precisam ser preenchidos.'
+            title: 'Preencha todos os campos.'
+        })
+    }
+    for (let i = 0; i < arrayCadastroEditarEmpresa.length; i++) {
+        if (arrayCadastroEditarEmpresa[i] == '') return Swal.fire({
+            icon: 'error',
+            title: 'Preencha todos os campos.'
         })
     }
 
-    if (usuarioLogado != null) {}
-    listaDeUsuarios.forEach(editarDadosUsuario => {
-        if (editarDadosUsuario.email == usuarioLogado) {
-            editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
-            editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
-            editarDadosUsuario.dataNascimento = document.getElementById('dataNascimentoEditar').value
-        }
-    })
-    localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-    Swal.fire('Dados atualizados.').then((result => {
-        if (result.isConfirmed) {
-            window.location.href = 'paginaListar.html'
-        }
-    }))
-
-    if (empresaLogado != null) {
-        
+    if (usuarioLogado != null) {
+        listaDeUsuarios.forEach(editarDadosUsuario => {
+            if (editarDadosUsuario.email == usuarioLogado) {
+                editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
+                editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
+                editarDadosUsuario.dataNascimento = document.getElementById('dataNascimentoEditar').value
+            }
+        })
+        localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+        Swal.fire('Dados atualizados.').then((result => {
+            if (result.isConfirmed) {
+                window.location.href = 'paginaListar.html'
+            }
+        }))
     }
 }
 
 let redefinirSenha = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
 
     let novaSenha = document.getElementById('redefinirSenha')
     let confirmarNovaSenha = document.getElementById('confirmarSenha')
@@ -441,11 +455,15 @@ let redefinirSenha = () => {
 
 let showListarUsuario = () => {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return Swal.fire({
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado != null) return window.location.href = 'paginaListar.html'
+    if (empresaLogado != null) return window.location.href = 'paginaListarEmpresa.html'
+
+    return Swal.fire({
         icon: 'error',
         title: 'Primeiro, crie uma conta ou faça login.'
     })
-    window.location.href = "paginaListar.html"
 }
 
 let showEditarUsuario = () => {
@@ -457,8 +475,6 @@ let showEditarUsuario = () => {
     window.location.href = "paginaAtualizar.html"
 }
 
-let showRedefinirSenha = () => window.location.href = 'redefinirSenha.html'
-
 let atualizarListarUsuarios = () => {
     atualizarUsuario()
     listarUsuario()
@@ -466,13 +482,17 @@ let atualizarListarUsuarios = () => {
 
 document.getElementById('swalSair').addEventListener('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    if (usuarioLogado != null) {
+    if (usuarioLogado != null || empresaLogado != null) {
         usuarioLogado = null
+        empresaLogado = null
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+        localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
         return Swal.fire('Você saiu da sua conta.')
     }
-    return Swal.fire({
+
+    Swal.fire({
         icon: 'error',
         title: 'Você não está logado.'
     })
@@ -480,7 +500,7 @@ document.getElementById('swalSair').addEventListener('click', function () {
 
 document.getElementById('swalPerfil').addEventListener('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    
+
     if (usuarioLogado != null) return window.location.href = "paginaListar.html"
     if (empresaLogado != null) return window.location.href = "paginaListarEmpresa.html"
 

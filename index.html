@@ -40,11 +40,11 @@
             <a id="swalPerfil" class="nav-link text-white" href="#">Perfil</a>
           </li>
           <li class="nav-item">
-            <button id="swalLogin" class="nav-link text-white btn btn-primary" href="#">Login</button>
+            <button id="swalLogin" class="btn btn-primary" href="#">Login</button>
           </li>
           <li class="nav-item">
-            <a id="swalCadastro" class="nav-link text-white btn btn-primary" data-bs-toggle="modal"
-              data-bs-target="#exampleModalCadastro" href="#">Cadastro</a>
+            <button id="swalCadastro" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#exampleModalCadastro" href="#">Cadastro</button>
           </li>
           <li class="nav-item">
             <a id="swalSair" class="nav-link text-white" href="#">Sair da Conta</a>
@@ -69,7 +69,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Cadastre Como Usuário</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -102,7 +102,7 @@
         <div class="modal-footer">
           <button type="button" id="cadastrar-empresa-btn" 
           data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Tenho instituição</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="adicionarUsuario()" class="btn btn-primary">Cadastrar</button>
         </div>
       </div>
@@ -115,7 +115,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Cadastre Como Instituição</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -144,7 +144,7 @@
         <div class="modal-footer">
           <button type="button" id="cadastrar-usuario-btn"
             data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Sou usuário</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="adicionarEmpresa()" class="btn btn-primary">Cadastrar</button>
         </div>
       </div>
@@ -156,7 +156,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Logar como Usuário</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -175,7 +175,7 @@
             data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Entrar com instituição</button>
           <button type="button" id="usuario-redefinir-senha-btn" data-bs-dismiss="modal"
             data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="logarUsuario()" class="btn btn-primary">Logar</button>
         </div>
       </div>
@@ -188,7 +188,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Logar Como Instituição</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -207,7 +207,7 @@
             data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Entrar com usuário</button>
           <button type="button" id="empresa-redefinir-senha-btn" data-bs-dismiss="modal"
             data-bs-toggle="modal" class=" btn-redefinir btn btn-secondary">Esqueci minha senha</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="logarEmpresa()" class="btn btn-primary">Logar</button>
         </div>
       </div>
@@ -220,7 +220,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -242,7 +242,7 @@
           <button type="button" id="redefinir-empresa-btn"
             data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Senha da
             Instituição</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
         </div>
       </div>
@@ -255,7 +255,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha da Instituição</h5>
-          <button type="button" id="btnFechar" onclick="fecharModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="btnFechar"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -277,7 +277,7 @@
           <button type="button" id="redefinir-usuario-btn"
             data-bs-dismiss="modal" data-bs-toggle="modal" class="btn-redefinir btn btn-secondary">Senha do
             Usuário</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
         </div>
       </div>
@@ -289,7 +289,7 @@
     <div id="scrollEmpresa"></div>
     <div id="sobreEmpresa" class="p-5 border">
       <p>
-        Sobre n´´os
+        Sobre nós
       </p>
     </div>
     <div id="scrollDinheiro"></div>

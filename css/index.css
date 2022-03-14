@@ -47,7 +47,7 @@ body, html {
     overflow-y: auto;
 }
 
-.modal-footer {    
+.modal-footer {
     display: grid;
     justify-content: center;
     justify-items: stretch;
@@ -59,6 +59,26 @@ body, html {
     height: 90vh;
 }
 
-@media screen {
-    
+.btn-primary {
+    background-color: #008c76ff;
+    border-color: #9ed9ccff;
+}
+
+.btn-terciary {
+    color: white;
+    background-color: #e96857ff;
+    border-color: #ffdde2ff;
+}
+
+.btn-primary:hover {
+    color: black;
+    background-color: #9ed9ccff;
+    border-color: #008c76ff;
+
+}
+
+.btn-terciary:hover {
+    color: black;
+    background-color: #ffdde2ff;
+    border-color: #e96857ff;
 }
