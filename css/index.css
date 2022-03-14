@@ -59,6 +59,10 @@ body, html {
     height: 90vh;
 }
 
+.btn-nav {
+    min-width: 5.5rem;
+}
+
 .btn-primary {
     background-color: #008c76ff;
     border-color: #9ed9ccff;
@@ -81,4 +85,50 @@ body, html {
     color: black;
     background-color: #ffdde2ff;
     border-color: #e96857ff;
+}
+
+.fa {
+    margin-right: 0.5rem;
+}
+
+/* .navbar-nav {
+    display: flex;
+    padding-inline: 0rem;
+    justify-items: end;
+    max-width: 70%;
+    align-items: flex-start;
+} */
+
+/* .navbar-collapse {
+    margin-left: 2rem;
+    align-items: right;
+} */
+
+/* .collapse-show {
+    display: flex;
+    padding-right: 10rem;
+} */
+
+/* .nav-link {
+    display: flex;
+    padding: 0;
+    min-width: 6rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-white {
+    display: flex;
+    justify-items: center;
+} */
+
+ul {
+    justify-content: end;
+    margin-left: 4rem;
 }

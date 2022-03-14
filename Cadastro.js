@@ -121,7 +121,7 @@ let adicionarEmpresa = () => {
 }
 
 $('#swalCadastro').on('click', function () {
-
+    $('#exampleModalCadastro').modal("toggle")
 })
 
 let excluirUsuario = () => {
