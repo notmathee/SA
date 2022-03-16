@@ -2,6 +2,12 @@ body, html {
     margin: 0;
     width: 100%;
     overflow-anchor: none;
+    overflow-x: hidden;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
 }
 
 .content {
@@ -31,6 +37,10 @@ body, html {
     backdrop-filter: blur(1rem);
 }
 
+.navbar-brand {
+    padding-left: 1rem
+}
+
 .nav-item {
     margin-inline: 1rem;
 }
@@ -41,10 +51,6 @@ body, html {
 
 #sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
     height: 10rem;
-}
-
-.modal {
-    overflow-y: auto;
 }
 
 .modal-footer {
@@ -95,14 +101,14 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-inline: 5rem;
+    
 }
 
 
 .caixa-titulo {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+
 }
 
 .titulo {
@@ -110,24 +116,27 @@ body, html {
 }
 
 .caixa-doar {
-    width: 100%;
+    margin: 0;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    padding-top: 0;
 }
 
 .col-row {
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
+    width: 100%;
+    margin: auto;
 }
 
 .navbar-nav {
     display: flex;
     padding-inline: 0rem;
     justify-items: end;
-    max-width: 70%;
     align-items: flex-start;
 } 
 
@@ -162,6 +171,7 @@ body, html {
 
 .text-blue {
     background-color: #e3f1f5;
+    border-bottom: 2px solid #007ba7;
 }
 
 .b-blue {
@@ -177,6 +187,11 @@ body, html {
     width: 100%;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    padding-left: 0;
+}
+
+.modal-open {
+    overflow-y: hidden;
 }
 
 ul {

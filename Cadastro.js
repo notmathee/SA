@@ -196,7 +196,6 @@ let logarUsuario = () => {
     let senhaLogin = document.getElementById('senhaLogin').value
     loginInvalido = true
 
-
     if (emailLogin == '' || senhaLogin == '') return Swal.fire({
         icon: 'error',
         title: 'Todos os campos precisam ser preenchidos!'
@@ -508,15 +507,6 @@ let redefinirSenhaEmpresa = () => {
         title: 'Este CNPJ não está cadastrado.'
     })
 }
-
-// let showEditarUsuario = () => {
-//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-//     if (usuarioLogado == null) return Swal.fire({
-//         icon: 'error',
-//         title: 'Primeiro, crie uma conta ou faça login',
-//     })
-//     window.location.href = "paginaAtualizar.html"
-// }
 
 let listarAtualizarUsuario = () => {
     listarUsuario()
