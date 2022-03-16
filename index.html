@@ -66,6 +66,20 @@
     <div class="texto-banner"></div>
   </div>
 
+  <div id="content-head">
+    <div class="text-blue text-center">
+      <div class="row">
+        <div class="col-blue">
+          <h1>
+            <b class="b-blue">
+             Opções de Doações
+            </b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal -->
   <div class="modal" id="exampleModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -98,7 +112,7 @@
           </div>
           <div class="mb-3">
             <label for="nascimentoCadastro" class="col-form-label">Data de nascimento:</label>
-            <input type="number" class="form-control" id="nascimentoCadastro">
+            <input type="date" class="form-control" id="nascimentoCadastro">
           </div>
         </div>
 
@@ -136,7 +150,7 @@
           </div>
           <div class="mb-3">
             <label for="celularCadastro" class="col-form-label">Data de abertura:</label>
-            <input type="tel" class="form-control" id="dataAbertura">
+            <input type="date" class="form-control" id="dataAbertura">
           </div>
           <div class="mb-3">
             <label for="numeroInscricao" class="col-form-label">Número de inscrição:</label>
@@ -226,7 +240,7 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="redefinirSenha" class="col-form-label">Digite Seu Email:</label>
+            <label for="redefinirSenha" class="col-form-label">Confirme o Email:</label>
             <input type="email" class="form-control" id="confirmarEmail">
           </div>
           <div class="mb-3">
@@ -261,7 +275,7 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="redefinirSenha" class="col-form-label">Digite Seu Número de Inscrição:</label>
+            <label for="redefinirSenha" class="col-form-label">Confirme o Número de Inscrição:</label>
             <input type="number" class="form-control" id="numeroInscricaoRedefinirSenha">
           </div>
           <div class="mb-3">
@@ -279,7 +293,7 @@
             class="btn-redefinir btn btn-secondary">Senha do
             Usuário</button>
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
+          <button type="button" onclick="redefinirSenhaEmpresa()" class="btn btn-primary">Redefinir</button>
         </div>
       </div>
     </div>
@@ -313,6 +327,7 @@
 </div>
 
   <!-- Main Content Area -->
+
   <div class="container my-5 d-grid gap-5">
     <div id="scrollEmpresa"></div>
     <div id="sobreEmpresa" class="p-5 border">

@@ -131,6 +131,9 @@ let excluirUsuario = () => {
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
     loginInvalido = true
 
+    if (listaDeUsuarios == null) listaDeUsuarios = []
+    if (listaDeEmpresas == null) listaDeEmpresas = []
+
     Swal.fire({
         title: 'Tem certeza?',
         text: "Sua conta e todos os dados dela serão excluídos.",
@@ -276,12 +279,43 @@ $('.buttonSolicitar').on('click', function () {
         icon: 'error',
         title: 'Só é possível solicitar doações como instituição.'
     })
-    
+
     Swal.fire({
         icon: 'error',
         title: 'Primeiro, faça login ou crie uma conta.'
     })
 
+})
+
+$('#swalPerfil').on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado != null && empresaLogado == null) return window.location.href = "paginaListar.html"
+    if (empresaLogado != null && usuarioLogado == null) return window.location.href = "paginaListarEmpresa.html"
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, faça login ou cadastre uma conta.',
+    })
+})
+
+$("#swalSair").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado != null || empresaLogado != null) {
+        usuarioLogado = null
+        empresaLogado = null
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
+        localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
+        return Swal.fire('Você saiu da sua conta.')
+    }
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Você não está logado.'
+    })
 })
 
 $('#cadastrar-empresa-btn').on('click', function () {
@@ -416,10 +450,6 @@ let redefinirSenha = () => {
     let confirmarNovaSenha = document.getElementById('confirmarSenha')
     let emailRedefinirSenha = document.getElementById('confirmarEmail')
 
-    let numeroInscricaoRedefinirSenha = document.getElementById('numeroInscricaoRedefinirSenha')
-    let novaSenhaEmpresa = document.getElementById('redefinirSenhaEmpresa')
-    let confirmarNovaSenhaEmpresa = document.getElementById('confirmarSenhaEmpresa')
-
     for (let i = 0; i < listaDeUsuarios.length; i++) {
         if (novaSenha.value == listaDeUsuarios[i].senha) {
             return Swal.fire({
@@ -428,27 +458,10 @@ let redefinirSenha = () => {
             })
         }
     }
-    for (let i = 0; i < listaDeEmpresas.length; i++) {
-        if (novaSenha.value == listaDeEmpresas[i].senha) {
-            return Swal.fire({
-                icon: 'error',
-                title: 'Essa é a sua senha atual.'
-            })
-        }
-    }
-
     for (let i = 0; i < listaDeUsuarios.length; i++) {
         if (novaSenha.value == confirmarNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
             listaDeUsuarios[i].senha = novaSenha.value
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-            return Swal.fire('Senha redefinida.')
-        }
-    }
-    for (let i = 0; i < listaDeEmpresas.length; i++) {
-        if (novaSenhaEmpresa.value == confirmarNovaSenhaEmpresa.value &&
-            listaDeEmpresas[i].numeroInscricao == numeroInscricaoRedefinirSenha.value) {
-            listaDeEmpresas[i].senha = novaSenhaEmpresa.value
-            localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
             return Swal.fire('Senha redefinida.')
         }
     }
@@ -460,6 +473,32 @@ let redefinirSenha = () => {
         icon: 'error',
         title: 'Este email não está cadastrado.'
     })
+}
+
+let redefinirSenhaEmpresa = () => {
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
+
+    let numeroInscricaoRedefinirSenha = document.getElementById('numeroInscricaoRedefinirSenha')
+    let novaSenhaEmpresa = document.getElementById('redefinirSenhaEmpresa')
+    let confirmarNovaSenhaEmpresa = document.getElementById('confirmarSenhaEmpresa')
+
+    for (let i = 0; i < listaDeEmpresas.length; i++) {
+        if (novaSenhaEmpresa.value == listaDeEmpresas[i].senha) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Essa é a sua senha atual.'
+            })
+        }
+    }
+    for (let i = 0; i < listaDeEmpresas.length; i++) {
+        if (novaSenhaEmpresa.value == confirmarNovaSenhaEmpresa.value &&
+            listaDeEmpresas[i].numeroInscricao == numeroInscricaoRedefinirSenha.value) {
+            listaDeEmpresas[i].senhaEmpresa = novaSenhaEmpresa.value
+            localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
+            return Swal.fire('Senha redefinida.')
+        }
+    }
     if (novaSenhaEmpresa.value != confirmarNovaSenhaEmpresa.value) Swal.fire({
         icon: 'error',
         title: 'As senhas não são iguais.'
@@ -470,59 +509,16 @@ let redefinirSenha = () => {
     })
 }
 
-let showListarUsuario = () => {
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+// let showEditarUsuario = () => {
+//     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+//     if (usuarioLogado == null) return Swal.fire({
+//         icon: 'error',
+//         title: 'Primeiro, crie uma conta ou faça login',
+//     })
+//     window.location.href = "paginaAtualizar.html"
+// }
 
-    if (usuarioLogado != null) return window.location.href = 'paginaListar.html'
-    if (empresaLogado != null) return window.location.href = 'paginaListarEmpresa.html'
-
-    return Swal.fire({
-        icon: 'error',
-        title: 'Primeiro, crie uma conta ou faça login.'
-    })
-}
-
-let showEditarUsuario = () => {
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    if (usuarioLogado == null) return Swal.fire({
-        icon: 'error',
-        title: 'Primeiro, crie uma conta ou faça login',
-    })
-    window.location.href = "paginaAtualizar.html"
-}
-
-let atualizarListarUsuarios = () => {
-    atualizarUsuario()
+let listarAtualizarUsuario = () => {
     listarUsuario()
+    atualizarUsuario()
 }
-
-document.getElementById('swalSair').addEventListener('click', function () {
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
-
-    if (usuarioLogado != null || empresaLogado != null) {
-        usuarioLogado = null
-        empresaLogado = null
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-        localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
-        return Swal.fire('Você saiu da sua conta.')
-    }
-
-    Swal.fire({
-        icon: 'error',
-        title: 'Você não está logado.'
-    })
-})
-
-document.getElementById('swalPerfil').addEventListener('click', function () {
-    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
-
-    if (usuarioLogado != null) return window.location.href = "paginaListar.html"
-    if (empresaLogado != null) return window.location.href = "paginaListarEmpresa.html"
-
-    Swal.fire({
-        icon: 'error',
-        title: 'Primeiro, faça login ou cadastre uma conta.',
-    })
-})

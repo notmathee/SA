@@ -8,100 +8,87 @@
   <title>CEDIM - Gerenciamento de Conta</title>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/paginaListar.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="css/paginaListarEmpresa.css">
 
   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 </head>
 
-<body onload="atualizarListarUsuarios()">
+<body onload="listarAtualizarUsuario()">
   <header class="header-cedim">
     <h1 class="cedim">CEDIM</h1>
-  </header>
+</header>
 
-  <div class="container">
-
+<div class="container">
+    
     <div class="informacoes">
+        <div class="form">
 
-      <!-- usuario -->
+  <label for="">Nome:</label>
+  <p type="text" id="nomeCadastroMostrar"></p>
 
-      <label for="">Nome:</label>
-      <p type="text" id="nomeCadastroMostrar"></p>
+  <label for="">Email:</label>
+  <p type="text" id="emailCadastroMostrar"></p>
 
-      <label for="">Email:</label>
-      <p type="text" id="emailCadastroMostrar"></p>
+  <label for="">Celular:</label>
+  <p type="text" id="celularCadastroMostrar"></p>
 
-      <label for="">Celular:</label>
-      <p type="text" id="celularCadastroMostrar"></p>
+  <label for="">CPF:</label>
+  <p type="text" id="cpfCadastroMostrar"></p>
 
-      <label for="">CPF:</label>
-      <p type="text" id="cpfCadastroMostrar"></p>
-
-      <label for="">Data de nascimento:</label>
-      <p type="text" id="dataNascimentoMostrar"></p>
-
-      <!-- empresa -->
-
-      <label for="">Nome empresarial:</label>
-      <p type="text" id="nomeEmpresaMostrar"></p>
-
-      <label for="">Município:</label>
-      <p type="text" id="municipioEmpresaMostrar"></p>
-
-      <label for="">Data de abertura:</label>
-      <p type="text" id="dataAberturaMostrar"></p>
-
-      <label for="">Numero de inscrição:</label>
-      <p type="text" id="numeroInscricaoMostrar"></p>
-    </div>
+  <label for="">Data de nascimento:</label>
+  <p type="text" id="dataNascimentoMostrar"></p>
+ </div>
+</div>
 
     <!-- modals -->
 
-    <div class="modal fade" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Entrar na Conta</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Editar Conta</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           <div class="modal-body">
             <div class="mb-3">
               <label for="nomeCadastroEditar" class="col-form-label">Mudar nome:</label>
-              <input type="email" class="form-control" id="nomeCadastroEditar">
+              <input type="name" class="form-control" id="nomeCadastroEditar">
             </div>
             <div class="mb-3">
               <label for="celularCadastroEditar" class="col-form-label">Mudar telefone:</label>
-              <input type="password" class="form-control" id="celularCadastroEditar">
+              <input type="tel" class="form-control" id="celularCadastroEditar">
             </div>
             <div class="mb-3">
               <label for="dataNascimentoEditar" class="col-form-label">Mudar data de nascimento:</label>
-              <input type="password" class="form-control" id="dataNascimentoEditar">
+              <input type="date" class="form-control" id="dataNascimentoEditar">
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
             <button type="button" onclick="editarUsuario()" class="btn btn-primary">Atualizar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal" id="exampleModalRedefinir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha do Usuário</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha</h5>
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
+  
           <div class="modal-body">
             <div class="mb-3">
-              <label for="redefinirSenha" class="col-form-label">Digite Seu Email:</label>
+              <label for="redefinirSenha" class="col-form-label">Confirme o Email:</label>
               <input type="email" class="form-control" id="confirmarEmail">
             </div>
             <div class="mb-3">
@@ -113,47 +100,9 @@
               <input type="password" class="form-control" id="confirmarSenha">
             </div>
           </div>
-
+  
           <div class="modal-footer">
-            <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinirEmpresa" 
-            autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
-            class="btn-redefinir btn btn-secondary">Senha da Instituição</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalRedefinirEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha da Instituição</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="redefinirSenha" class="col-form-label">Digite Seu Número de Inscrição:</label>
-              <input type="number" class="form-control" id="numeroInscricaoRedefinirSenha">
-            </div>
-            <div class="mb-3">
-              <label for="redefinirSenha" class="col-form-label">Redefinir Senha:</label>
-              <input type="password" class="form-control" id="redefinirSenha">
-            </div>
-            <div class="mb-3">
-              <label for="confirmarSenha" class="col-form-label">Confirmar Senha:</label>
-              <input type="password" class="form-control" id="confirmarSenha">
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" id="redefinir-btn" data-bs-target="#exampleModalRedefinir" 
-            autofocus data-bs-dismiss="modal" data-bs-toggle="modal" 
-            class="btn-redefinir btn btn-secondary">Senha do Usuário</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
             <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
           </div>
         </div>

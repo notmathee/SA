@@ -160,6 +160,25 @@ body, html {
     justify-items: center;
 }
 
+.text-blue {
+    background-color: #e3f1f5;
+}
+
+.b-blue {
+    color: #007ba7;
+}
+
+.content-head {
+    display: flex;
+    width: 100%;
+}
+
+.col-blue {
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
 ul {
     justify-content: end;
     margin-left: 4rem;
