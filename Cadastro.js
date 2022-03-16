@@ -267,6 +267,23 @@ $('#swalLogin').on('click', function () {
     })
 })
 
+$('.buttonSolicitar').on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (empresaLogado != null) return $('#exampleModalSolicitar').modal('toggle')
+    if (empresaLogado == null && usuarioLogado != null) return Swal.fire({
+        icon: 'error',
+        title: 'Só é possível solicitar doações como instituição.'
+    })
+    
+    Swal.fire({
+        icon: 'error',
+        title: 'Primeiro, faça login ou crie uma conta.'
+    })
+
+})
+
 $('#cadastrar-empresa-btn').on('click', function () {
     $('#exampleModalCadastroEmpresa').modal('toggle')
 })

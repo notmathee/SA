@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     width: 100%;
-    /* overflow-anchor: none; */
+    overflow-anchor: none;
 }
 
 .content {
@@ -91,25 +91,57 @@ body, html {
     margin-right: 0.5rem;
 }
 
-/* .navbar-nav {
+.col-doar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-inline: 5rem;
+}
+
+
+.caixa-titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.titulo {
+    font-weight: 700;
+}
+
+.caixa-doar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.col-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-nav {
     display: flex;
     padding-inline: 0rem;
     justify-items: end;
     max-width: 70%;
     align-items: flex-start;
-} */
+} 
 
-/* .navbar-collapse {
+.navbar-collapse {
     margin-left: 2rem;
     align-items: right;
-} */
+}
 
-/* .collapse-show {
+.collapse-show {
     display: flex;
     padding-right: 10rem;
-} */
+}
 
-/* .nav-link {
+ .nav-link {
     display: flex;
     padding: 0;
     min-width: 6rem;
@@ -126,7 +158,7 @@ body, html {
 .text-white {
     display: flex;
     justify-items: center;
-} */
+}
 
 ul {
     justify-content: end;
