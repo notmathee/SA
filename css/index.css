@@ -1,8 +1,6 @@
 body, html {
     margin: 0;
-    width: 100%;
     overflow-anchor: none;
-    overflow-x: hidden;
 }
 
 .container {
@@ -62,7 +60,7 @@ body, html {
 }
 
 .banner-image {
-    height: 90vh;
+    height: 100vh;
 }
 
 .btn-nav {
@@ -116,20 +114,17 @@ body, html {
 }
 
 .caixa-doar {
-    margin: 0;
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    padding-top: 0;
 }
 
 .col-row {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: 100%;
+    width: 100vw;
     margin: auto;
 }
 
@@ -179,19 +174,18 @@ body, html {
 }
 
 .content-head {
-    display: flex;
-    width: 100%;
+    width: fit-content;
 }
 
 .col-blue {
-    width: 100%;
+    width: 100vw;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    padding-left: 0;
+    /* padding-left: 0; */
 }
 
 .modal-open {
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 ul {
