@@ -1,0 +1,86 @@
+
+.page-footer, .page-footer a {
+    color: var(--text-secondary);
+}
+
+
+.page-footer {
+    background-color: var(--background-secondary);
+    padding: 2rem 1rem;
+    position: relative;
+    background-color: #5454551a;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 50px;
+    justify-items: center;
+    align-items: start;
+    justify-content: start;
+    align-content: stretch;
+}
+
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;    
+}
+
+
+footer {
+    display: block;
+}
+
+
+.dark, .light, :root {
+    --icon-secondary: #afafba;
+}
+
+
+.light, :root {
+    --text-secondary: #5b5b66; 
+}
+
+
+footer{
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    justify-content: last baseline;   
+}
+
+
+.conteudo{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.conteudo h1{
+    font-size: 15vh;
+    text-transform: uppercase;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    padding-inline-start: 15px;
+}
+
+.footer-nav-heading {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
