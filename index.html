@@ -68,13 +68,13 @@
 
   <div id="content-head">
     <div class="text-blue text-center">
-        <div class="col-blue">
-          <h1>
-            <b class="b-blue">
-             Ajude outras pessoas, rápido e facil
-            </b>
-          </h1>
-        </div>
+      <div class="col-blue">
+        <h1>
+          <b class="b-blue">
+            Ajude outras pessoas, rápido e fácil!
+          </b>
+        </h1>
+      </div>
     </div>
   </div>
 
@@ -238,7 +238,7 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="redefinirSenha" class="col-form-label">Confirme o Email:</label>
+            <label for="confirmarEmail" class="col-form-label">Confirme o Email:</label>
             <input type="email" class="form-control" id="confirmarEmail">
           </div>
           <div class="mb-3">
@@ -297,32 +297,459 @@
     </div>
   </div>
 
-  <div class="modal" id="exampleModalSolicitar" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Solicitar Doação como Instituição</h5>
-        <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="" class="col-form-label">:</label>
-          <input type="text" class="form-control" id="">
+  <div class="modal" id="exampleModalSolicitarDinheiro" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.3)</h5>
+            <p class="modal-title">(informações da instituição 1.3)</p>
+          </div>
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <button type="button" id="redefinir-usuario-btn" data-bs-dismiss="modal" data-bs-toggle="modal"
-          class="btn-redefinir btn btn-secondary">Senha do
-          Usuário</button>
-        <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+              necessidades:</label>
+            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="endereco">Insira o endereço da Instituição:</label>
+            <input type="text" id="endereco" class="form-control">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="solicitarDinheiro()" class="btn btn-primary">Solicitar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="modal" id="exampleModalSolicitarVestimenta" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.3)</h5>
+            <p class="modal-title">(informações da instituição 1.3)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+              necessidades:</label>
+            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="endereco">Insira o endereço da Instituição:</label>
+            <input type="text" id="endereco" class="form-control">
+          </div>
+          <!-- <div class="mb-3">
+            <label for="opcoesVestimentas">Tipo de vestimenta necessitada:</label>
+            <select name="selectVestimentas" class="form-control" id="opcoesVestimentas">
+              <option value="superior">Peça superior</option>
+              <option value="inferior">Peça inferior </option>
+              <option value="calçado">Calçado</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="solicitarVestimenta()" class="btn btn-primary">Solicitar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalSolicitarAlimento" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.3)</h5>
+            <p class="modal-title">(informações da instituição 1.3)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+              necessidades:</label>
+            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="endereco">Insira o endereço da Instituição:</label>
+            <input type="text" id="endereco" class="form-control">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="solicitarAlimento()" class="btn btn-primary">Solicitar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS DOAR -->
+
+  <div class="modal" id="exampleModalDoarDinheiro1" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.1)</h5>
+            <p class="modal-title">(informações da instituição 1.1)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="radio5" class="col-form-label">R$ 5,00</label>
+            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <label for="radio10" class="col-form-label">R$ 10,00</label>
+            <input type="radio" name="doarRadio" id="radio10" value="10">
+          </div>
+          <div class="mb-3">
+            <label for="radio20" class="col-form-label">R$ 20,00</label>
+            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <label for="radio40" class="col-form-label">R$ 40,00</label>
+            <input type="radio" name="doarRadio" id="radio40" value="40">
+          </div>
+          <div class="mb-3">
+            <label for="valorDoar" class="col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+              data-prefix="R$ ">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarDinheiro2" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.2)</h5>
+            <p class="modal-title">(informações da instituição 1.2)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="radio5" class="col-form-label">R$ 5,00</label>
+            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <label for="radio10" class="col-form-label">R$ 10,00</label>
+            <input type="radio" name="doarRadio" id="radio10" value="10">
+          </div>
+          <div class="mb-3">
+            <label for="radio20" class="col-form-label">R$ 20,00</label>
+            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <label for="radio40" class="col-form-label">R$ 40,00</label>
+            <input type="radio" name="doarRadio" id="radio40" value="40">
+          </div>
+          <div class="mb-3">
+            <label for="valorDoar class=" col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+              data-prefix="R$ ">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarDinheiro3" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 1.3)</h5>
+            <p class="modal-title">(informações da instituição 1.3)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="radio5" class="col-form-label">R$ 5,00</label>
+            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <label for="radio10" class="col-form-label">R$ 10,00</label>
+            <input type="radio" name="doarRadio" id="radio10" value="10">
+          </div>
+          <div class="mb-3">
+            <label for="radio20" class="col-form-label">R$ 20,00</label>
+            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <label for="radio40" class="col-form-label">R$ 40,00</label>
+            <input type="radio" name="doarRadio" id="radio40" value="40">
+          </div>
+          <div class="mb-3">
+            <label for="valorDoar class=" col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+              data-prefix="R$ ">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarVestimenta1" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.1)</h5>
+            <p class="modal-title">(informações da instituição 2.1)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesVestimentas">Tipo de Vestimenta:</label>
+            <select name="selectVestimentas" class="form-control" id="opcoesVestimentas">
+              <option value="superior">Peça superior</option>
+              <option value="inferior">Peça inferior </option>
+              <option value="calçado">Calçado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaVestimenta" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaVestimenta">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarVestimenta2" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.2)</h5>
+            <p class="modal-title">(informações da instituição 2.2)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesVestimentas">Tipo de Vestimenta:</label>
+            <select name="selectVestimentas" class="form-control" id="opcoesVestimentas">
+              <option value="superior">Peça superior</option>
+              <option value="inferior">Peça inferior </option>
+              <option value="calçado">Calçado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaVestimenta" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaVestimenta">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarVestimenta3" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.3)</h5>
+            <p class="modal-title">(informações da instituição 2.3)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesVestimentas">Tipo de Vestimenta:</label>
+            <select name="selectVestimentas" class="form-control" id="opcoesVestimentas">
+              <option value="superior">Peça superior</option>
+              <option value="inferior">Peça inferior </option>
+              <option value="calçado">Calçado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaVestimenta" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaVestimenta">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarAlimento1" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.1)</h5>
+            <p class="modal-title">(informações da instituição 3.1)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesAlimentos">Alimentos Requisitados pela Instituição:</label>
+            <select name="selectAlimentos" class="form-control" id="opcoesAlimentos">
+              <option value="arroz">Arroz</option>
+              <option value="feijao">Feijão</option>
+              <option value="macarrao">Macarrão</option>
+              <option value="soja">Soja</option>
+              <option value="leiteEmPo">Leite em pó</option>
+              <option value="cafe">Café</option>
+              <option value="acucar">Açúcar</option>
+              <option value="sal">Sal</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaAlimento" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaAlimento">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal" id="exampleModalDoarAlimento2" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.2)</h5>
+            <p class="modal-title">(informações da instituição 3.2)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesAlimentos">Alimentos Requisitados pela Instituição:</label>
+            <select name="selectAlimentos" class="form-control" id="opcoesAlimentos">
+              <option value="arroz">Arroz</option>
+              <option value="feijao">Feijão</option>
+              <option value="macarrao">Macarrão</option>
+              <option value="soja">Soja</option>
+              <option value="leiteEmPo">Leite em pó</option>
+              <option value="cafe">Café</option>
+              <option value="acucar">Açúcar</option>
+              <option value="sal">Sal</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaAlimento" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaAlimento">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="exampleModalDoarAlimento3" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-col">
+            <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.3)</h5>
+            <p class="modal-title">(informações da instituição 3.3)</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="opcoesAlimentos">Alimentos Requisitados pela Instituição:</label>
+            <select name="selectAlimentos" class="form-control" id="opcoesAlimentos">
+              <option value="arroz">Arroz</option>
+              <option value="feijao">Feijão</option>
+              <option value="macarrao">Macarrão</option>
+              <option value="soja">Soja</option>
+              <option value="leiteEmPo">Leite em pó</option>
+              <option value="cafe">Café</option>
+              <option value="acucar">Açúcar</option>
+              <option value="sal">Sal</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="dataDeEntregaAlimento" class="col-form-label">Data da sua Entrega:</label>
+            <input type="date" class="form-control" id="dataDeEntregaAlimento">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS DOAR -->
 
   <!-- Main Content Area -->
 
@@ -336,13 +763,13 @@
 
     <div id="content-head">
       <div class="text-blue text-center">
-          <div class="col-blue">
-            <h1>
-              <b class="b-blue">
-               Opções de Doações
-              </b>
-            </h1>
-          </div>
+        <div class="col-blue">
+          <h1>
+            <b class="b-blue">
+              Opções de Doações
+            </b>
+          </h1>
+        </div>
       </div>
     </div>
 
@@ -354,14 +781,15 @@
         </p>
       </div>
 
-      <div class="col-row"> 
-          <button id="buttonDoarDinheiro">Contribuir</button>
-          <button id="buttonDoarDinheiro">Contribuir</button>
-          <button id="buttonDoarDinheiro">Contribuir</button>
+      <div class="col-row">
+        <button id="buttonDoarDinheiro1">Contribuir</button>
+        <button id="buttonDoarDinheiro2">Contribuir</button>
+        <button id="buttonDoarDinheiro3">Contribuir</button>
       </div>
 
       <div class="solicitar">
-        <button id="buttonSolicitarDinheiro" class="buttonSolicitar" onclick="receberDinheiro()">Solicitar Doação</button>
+        <button id="buttonSolicitarDinheiro" class="btn btn-primary">Solicitar
+          Doação em Dinheiro</button>
       </div>
     </div>
 
@@ -375,18 +803,19 @@
 
       <div class="col-row">
         <div class="col-doar">
-          <button id="buttonDoarVestimenta">Contribuir</button>
+          <button id="buttonDoarVestimenta1">Contribuir</button>
         </div>
         <div class="col-doar">
-          <button id="buttonDoarVestimenta">Contribuir</button>
+          <button id="buttonDoarVestimenta2">Contribuir</button>
         </div>
         <div class="col-doar">
-          <button id="buttonDoarVestimenta">Contribuir</button>
+          <button id="buttonDoarVestimenta3">Contribuir</button>
         </div>
       </div>
 
       <div class="solicitar">
-        <button id="buttonSolicitarVestimenta" class="buttonSolicitar" onclick="receberVestimenta()">Solicitar Doação</button>
+        <button id="buttonSolicitarVestimenta" class="btn btn-primary">Solicitar
+          Doação de Vestimentas</button>
       </div>
     </div>
 
@@ -400,18 +829,19 @@
 
       <div class="col-row">
         <div class="col-doar">
-          <button id="buttonDoarAlimento">Contribuir</button>
+          <button id="buttonDoarAlimento1">Contribuir</button>
         </div>
         <div class="col-doar">
-          <button id="buttonDoarAlimento">Contribuir</button>
+          <button id="buttonDoarAlimento2">Contribuir</button>
         </div>
         <div class="col-doar">
-          <button id="buttonDoarAlimento">Contribuir</button>
+          <button id="buttonDoarAlimento3">Contribuir</button>
         </div>
       </div>
 
       <div class="solicitar">
-        <button id="buttonSolicitarAlimento" class="buttonSolicitar" onclick="receberAlimento()">Solicitar Doação</button>
+        <button id="buttonSolicitarAlimento" class="btn btn-primary">Solicitar
+          Doação de alimentos</button>
       </div>
     </div>
 

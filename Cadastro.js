@@ -342,6 +342,46 @@ $('#usuario-redefinir-senha-btn').on('click', function () {
     $('#exampleModalRedefinir').modal('toggle')
 })
 
+$("#buttonSolicitarAlimento").on('click', function () {
+    $("#exampleModalSolicitarAlimento").modal('toggle')
+})
+$("#buttonSolicitarVestimenta").on('click', function () {
+    $("#exampleModalSolicitarVestimenta").modal('toggle')
+})
+$("#buttonSolicitarDinheiro").on('click', function () {
+    $("#exampleModalSolicitarDinheiro").modal('toggle')
+})
+
+$("#buttonDoarDinheiro1").on('click', function () {
+    $("#exampleModalDoarDinheiro1").modal('toggle')
+})
+$("#buttonDoarDinheiro2").on('click', function () {
+    $("#exampleModalDoarDinheiro2").modal('toggle')
+})
+$("#buttonDoarDinheiro3").on('click', function () {
+    $("#exampleModalDoarDinheiro3").modal('toggle')
+})
+
+$("#buttonDoarVestimenta1").on('click', function () {
+    $("#exampleModalDoarVestimenta1").modal('toggle')
+})
+$("#buttonDoarVestimenta2").on('click', function () {
+    $("#exampleModalDoarVestimenta2").modal('toggle')
+})
+$("#buttonDoarVestimenta3").on('click', function () {
+    $("#exampleModalDoarVestimenta3").modal('toggle')
+})
+
+$("#buttonDoarAlimento1").on('click', function () {
+    $("#exampleModalDoarAlimento1").modal('toggle')
+})
+$("#buttonDoarAlimento2").on('click', function () {
+    $("#exampleModalDoarAlimento2").modal('toggle')
+})
+$("#buttonDoarAlimento3").on('click', function () {
+    $("#exampleModalDoarAlimento3").modal('toggle')
+})
+
 let listarUsuario = () => {
     listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))

@@ -91,6 +91,10 @@ body, html {
     border-color: #e96857ff;
 }
 
+.btn {
+    font-weight: 600;
+}
+
 .fa {
     margin-right: 0.5rem;
 }
@@ -186,6 +190,21 @@ body, html {
 
 .modal-open {
     overflow: hidden;
+}
+
+.modal-header-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header {
+    display: block;
+}
+
+textarea {
+    resize: none;
 }
 
 ul {
