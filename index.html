@@ -312,13 +312,13 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+            <label for="descricaoInstituicaoDinheiro" class="col-form-label">Dê uma breve descrição da Instituição e suas
               necessidades:</label>
-            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+            <textarea id="descricaoInstituicaoDinheiro" cols="30" rows="5" class="form-control"></textarea>
           </div>
           <div class="mb-3">
             <label for="endereco">Insira o endereço da Instituição:</label>
-            <input type="text" id="endereco" class="form-control">
+            <input type="text" id="enderecoDinheiro" class="form-control">
           </div>
         </div>
 
@@ -344,13 +344,13 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+            <label for="descricaoInstituicaoVestimenta" class="col-form-label">Dê uma breve descrição da Instituição e suas
               necessidades:</label>
-            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+            <textarea id="descricaoInstituicaoVestimenta" cols="30" rows="5" class="form-control"></textarea>
           </div>
           <div class="mb-3">
             <label for="endereco">Insira o endereço da Instituição:</label>
-            <input type="text" id="endereco" class="form-control">
+            <input type="text" id="enderecoVestimenta" class="form-control">
           </div>
           <!-- <div class="mb-3">
             <label for="opcoesVestimentas">Tipo de vestimenta necessitada:</label>
@@ -384,13 +384,13 @@
 
         <div class="modal-body">
           <div class="mb-3">
-            <label for="descricaoInstituicao" class="col-form-label">Dê uma breve descrição da Instituição e suas
+            <label for="descricaoInstituicaoAlimento" class="col-form-label">Dê uma breve descrição da Instituição e suas
               necessidades:</label>
-            <textarea id="descricaoInstituicao" cols="30" rows="5" class="form-control"></textarea>
+            <textarea id="descricaoInstituicaoAlimento" cols="30" rows="5" class="form-control"></textarea>
           </div>
           <div class="mb-3">
             <label for="endereco">Insira o endereço da Instituição:</label>
-            <input type="text" id="endereco" class="form-control">
+            <input type="text" id="enderecoAlimento" class="form-control">
           </div>
         </div>
 
@@ -419,26 +419,26 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="radio5" class="col-form-label">R$ 5,00</label>
-            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <input type="radio" name="doarRadio" id="radio1-5" value="5">
             <label for="radio10" class="col-form-label">R$ 10,00</label>
-            <input type="radio" name="doarRadio" id="radio10" value="10">
+            <input type="radio" name="doarRadio" id="radio1-10" value="10">
           </div>
           <div class="mb-3">
             <label for="radio20" class="col-form-label">R$ 20,00</label>
-            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <input type="radio" name="doarRadio" id="radio1-20" value="20">
             <label for="radio40" class="col-form-label">R$ 40,00</label>
-            <input type="radio" name="doarRadio" id="radio40" value="40">
+            <input type="radio" name="doarRadio" id="radio1-40" value="40">
           </div>
           <div class="mb-3">
-            <label for="valorDoar" class="col-form-label">Ou Digite o Valor para Doar:</label>
-            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+            <label for="valorDoar1" class="col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="number" name="doarRadio" class="form-control" id="valorDoar1" data-thousands="." data-decimal=","
               data-prefix="R$ ">
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarDinheiroEmpresa1()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -459,26 +459,26 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="radio5" class="col-form-label">R$ 5,00</label>
-            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <input type="radio" name="doarRadio" id="radio2-5" value="5">
             <label for="radio10" class="col-form-label">R$ 10,00</label>
-            <input type="radio" name="doarRadio" id="radio10" value="10">
+            <input type="radio" name="doarRadio" id="radio2-10" value="10">
           </div>
           <div class="mb-3">
             <label for="radio20" class="col-form-label">R$ 20,00</label>
-            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <input type="radio" name="doarRadio" id="radio2-20" value="20">
             <label for="radio40" class="col-form-label">R$ 40,00</label>
-            <input type="radio" name="doarRadio" id="radio40" value="40">
+            <input type="radio" name="doarRadio" id="radio2-40" value="40">
           </div>
           <div class="mb-3">
-            <label for="valorDoar class=" col-form-label">Ou Digite o Valor para Doar:</label>
-            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+            <label for="valorDoar2 class=" col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="number" name="doarRadio" class="form-control" id="valorDoar2" data-thousands="." data-decimal=","
               data-prefix="R$ ">
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarDinheiroEmpresa2()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -499,26 +499,26 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="radio5" class="col-form-label">R$ 5,00</label>
-            <input type="radio" name="doarRadio" id="radio5" value="5">
+            <input type="radio" name="doarRadio" id="radio3-5" value="5">
             <label for="radio10" class="col-form-label">R$ 10,00</label>
-            <input type="radio" name="doarRadio" id="radio10" value="10">
+            <input type="radio" name="doarRadio" id="radio3-10" value="10">
           </div>
           <div class="mb-3">
             <label for="radio20" class="col-form-label">R$ 20,00</label>
-            <input type="radio" name="doarRadio" id="radio20" value="20">
+            <input type="radio" name="doarRadio" id="radio3-20" value="20">
             <label for="radio40" class="col-form-label">R$ 40,00</label>
-            <input type="radio" name="doarRadio" id="radio40" value="40">
+            <input type="radio" name="doarRadio" id="radio3-40" value="40">
           </div>
           <div class="mb-3">
-            <label for="valorDoar class=" col-form-label">Ou Digite o Valor para Doar:</label>
-            <input type="text" name="doarRadio" class="form-control" id="valorDoar" data-thousands="." data-decimal=","
+            <label for="valorDoar3 class=" col-form-label">Ou Digite o Valor para Doar:</label>
+            <input type="number" name="doarRadio" class="form-control" id="valorDoar3" data-thousands="." data-decimal=","
               data-prefix="R$ ">
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarDinheiroEmpresa3()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -532,7 +532,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.1)</h5>
-            <p class="modal-title">(informações da instituição 2.1)</p>
+            <p class="modal-title">(informações e endereço da instituição 2.1)</p>
           </div>
         </div>
 
@@ -553,7 +553,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarVestimentaEmpresa1()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -567,7 +567,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.2)</h5>
-            <p class="modal-title">(informações da instituição 2.2)</p>
+            <p class="modal-title">(informações da endereço instituição 2.2)</p>
           </div>
         </div>
 
@@ -588,7 +588,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarVestimentaEmpresa2()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -602,7 +602,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 2.3)</h5>
-            <p class="modal-title">(informações da instituição 2.3)</p>
+            <p class="modal-title">(informações da endereço instituição 2.3)</p>
           </div>
         </div>
 
@@ -610,9 +610,9 @@
           <div class="mb-3">
             <label for="opcoesVestimentas">Tipo de Vestimenta:</label>
             <select name="selectVestimentas" class="form-control" id="opcoesVestimentas">
-              <option value="superior">Peça superior</option>
-              <option value="inferior">Peça inferior </option>
-              <option value="calçado">Calçado</option>
+              <option id="option1" value="Peça superior">Peça superior</option>
+              <option id="option2" value="Peça inferior">Peça inferior</option>
+              <option id="option3" value="Calçado">Calçado</option>
             </select>
           </div>
           <div class="mb-3">
@@ -623,7 +623,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarVestimentaEmpresa3()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -637,7 +637,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.1)</h5>
-            <p class="modal-title">(informações da instituição 3.1)</p>
+            <p class="modal-title">(informações da endereço instituição 3.1)</p>
           </div>
         </div>
 
@@ -663,7 +663,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarAlimentoEmpresa1()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -678,7 +678,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.2)</h5>
-            <p class="modal-title">(informações da instituição 3.2)</p>
+            <p class="modal-title">(informações da endereço instituição 3.2)</p>
           </div>
         </div>
 
@@ -704,7 +704,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarAlimentoEmpresa2()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>
@@ -718,7 +718,7 @@
           <div class="modal-header-col">
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title" id="exampleModalLabel">Doe para (Instituição 3.3)</h5>
-            <p class="modal-title">(informações da instituição 3.3)</p>
+            <p class="modal-title">(informações da endereço instituição 3.3)</p>
           </div>
         </div>
 
@@ -744,7 +744,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Doar</button>
+          <button type="button" onclick="doarAlimentoEmpresa3()" class="btn btn-primary">Doar</button>
         </div>
       </div>
     </div>

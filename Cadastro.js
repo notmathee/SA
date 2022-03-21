@@ -548,6 +548,204 @@ let redefinirSenhaEmpresa = () => {
     })
 }
 
+let solicitarDinheiro = () => {
+    let arraySolicitarEmpresa = [
+        document.getElementById('descricaoInstituicaoDinheiro').value,
+        document.getElementById('enderecoDinheiro').value,
+    ]
+
+    for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
+        if (arraySolicitarEmpresa[i] == '') return Swal.fire({
+            icon: 'error',
+            title: 'Todos os campos precisam ser preenchidos!'
+        })
+    }
+
+    Swal.fire('Seu pedido de doação foi postado!').then((result) => {
+        if (result.isConfirmed) {
+            $("#exampleModalSolicitarDinheiro").modal('toggle')
+        }
+    })
+}
+
+let solicitarVestimenta = () => {
+    let arraySolicitarEmpresa = [
+        document.getElementById('descricaoInstituicaoVestimenta').value,
+        document.getElementById('enderecoVestimenta').value,
+    ]
+
+    for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
+        if (arraySolicitarEmpresa[i] == '') return Swal.fire({
+            icon: 'error',
+            title: 'Todos os campos precisam ser preenchidos!'
+        })
+    }
+
+    Swal.fire('Seu pedido de doação foi postado!').then((result) => {
+        if (result.isConfirmed) {
+            $("#exampleModalSolicitarVestimenta").modal('toggle')
+        }
+    })
+}
+
+let solicitarAlimento = () => {
+    let arraySolicitarEmpresa = [
+        document.getElementById('descricaoInstituicaoAlimento').value,
+        document.getElementById('enderecoAlimento').value,
+    ]
+
+    for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
+        if (arraySolicitarEmpresa[i] == '') return Swal.fire({
+            icon: 'error',
+            title: 'Todos os campos precisam ser preenchidos!'
+        })
+    }
+
+    Swal.fire('Seu pedido de doação foi postado!').then((result) => {
+        if (result.isConfirmed) {
+            $("#exampleModalSolicitarAlimento").modal('toggle')
+        }
+    })
+}
+
+$('#valorDoar1, #valorDoar2, #valorDoar3').on('click', function () {
+    $('input[name="doarRadio"]').prop("checked", false);
+})
+
+$("#radio1-5, #radio1-10, #radio1-20, #radio1-40").on('click', function () {
+    document.getElementById('valorDoar1').value = null
+})
+
+$("#radio2-5, #radio2-10, #radio2-20, #radio2-40").on('click', function () {
+    document.getElementById('valorDoar2').value = null
+})
+
+$("#radio3-5, #radio3-10, #radio3-20, #radio3-40").on('click', function () {
+    document.getElementById('valorDoar3').value = null
+})
+
+
+let doarDinheiroEmpresa1 = () => {
+    arrayRadios = [
+        radio1 = document.getElementById('radio1-5'),
+        radio2 = document.getElementById('radio1-10'),
+        radio3 = document.getElementById('radio1-20'),
+        radio4 = document.getElementById('radio1-40'),
+    ]
+    valorDoar1 = document.getElementById('valorDoar1').value
+    doarTrue = false
+
+    for (let i = 0; i < arrayRadios.length; i++) {
+        if (arrayRadios[i].checked) {
+            valor = arrayRadios[i].value
+            doarTrue = true
+        }
+        if (valorDoar1 != '') {
+            valor = valorDoar1
+            doarTrue = true
+        }
+
+        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA1). Todos nós somos gratos!`)
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Selecione ao menos um valor.'
+        })
+    }
+}
+
+let doarDinheiroEmpresa2 = () => {
+    arrayRadios = [
+        radio1 = document.getElementById('radio2-5'),
+        radio2 = document.getElementById('radio2-10'),
+        radio3 = document.getElementById('radio2-20'),
+        radio4 = document.getElementById('radio2-40'),
+    ]
+    valorDoar2 = document.getElementById('valorDoar2').value
+    doarTrue = false
+
+    for (let i = 0; i < arrayRadios.length; i++) {
+        if (arrayRadios[i].checked) {
+            valor = arrayRadios[i].value
+            doarTrue = true
+        }
+        if (valorDoar2 != '') {
+            valor = valorDoar2
+            doarTrue = true
+        }
+
+        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`)
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Selecione ao menos um valor.'
+        })
+    }
+}
+
+let doarDinheiroEmpresa3 = () => {
+    arrayRadios = [
+        radio1 = document.getElementById('radio3-5'),
+        radio2 = document.getElementById('radio3-10'),
+        radio3 = document.getElementById('radio3-20'),
+        radio4 = document.getElementById('radio3-40'),
+    ]
+    valorDoar3 = document.getElementById('valorDoar3').value
+    doarTrue = false
+
+    for (let i = 0; i < arrayRadios.length; i++) {
+        if (arrayRadios[i].checked) {
+            valor = arrayRadios[i].value
+            doarTrue = true
+        }
+        if (valorDoar3 != '') {
+            valor = valorDoar3
+            doarTrue = true
+        }
+
+        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA3). Todos nós somos gratos!`)
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Selecione ao menos um valor.'
+        })
+    }
+}
+
+let doarVestimentaEmpresa1 = () => {
+    let selectV = document.getElementById('selectVestimentas')
+    let data = document.getElementById('dataDeEntregaVestimenta')
+
+    if (data == null) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    if (selectV.value == 'Peça superior') Swal.fire(``)
+    if (selectV.value == 'Peça inferior') Swal.fire(``)
+    if (selectV.value == 'Calçado') Swal.fire(``)
+}
+
+let doarVestimentaEmpresa2 = () => {
+
+}
+
+let doarVestimentaEmpresa3 = () => {
+
+}
+
+let doarAlimentoEmpresa1 = () => {
+
+}
+
+let doarAlimentoEmpresa2 = () => {
+
+}
+
+let doarAlimentoEmpresa3 = () => {
+
+}
+
 let listarAtualizarUsuario = () => {
     listarUsuario()
     atualizarUsuario()
