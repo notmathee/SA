@@ -721,9 +721,9 @@ let doarVestimentaEmpresa1 = () => {
         title: 'Insira uma data.'
     })
 
-    if (selectV.value == 'Peça superior') Swal.fire(``)
-    if (selectV.value == 'Peça inferior') Swal.fire(``)
-    if (selectV.value == 'Calçado') Swal.fire(``)
+    if (selectV.value == 'Peça superior') Swal.fire(`Agradecemos por escolher doar uma peça superior!`)
+    if (selectV.value == 'Peça inferior') Swal.fire(`Agradecemos por escolher doar uma peça inferior!`)
+    if (selectV.value == 'Calçado') Swal.fire(`Agradecemos por escolher doar um calçado!`)
 }
 
 let doarVestimentaEmpresa2 = () => {
