@@ -645,7 +645,20 @@ let doarDinheiroEmpresa1 = () => {
             doarTrue = true
         }
 
-        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA1). Todos nós somos gratos!`)
+        if (doarTrue) return Swal.fire({
+            title: `Confirmação para doar R$ ${valor},00.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Doar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) Swal.fire({
+                icon: 'success',
+                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+            })
+        })
 
         Swal.fire({
             icon: 'error',
@@ -674,7 +687,20 @@ let doarDinheiroEmpresa2 = () => {
             doarTrue = true
         }
 
-        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`)
+        if (doarTrue) return Swal.fire({
+            title: `Confirmação para doar R$ ${valor},00.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Doar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) Swal.fire({
+                icon: 'success',
+                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+            })
+        })
 
         Swal.fire({
             icon: 'error',
@@ -703,7 +729,20 @@ let doarDinheiroEmpresa3 = () => {
             doarTrue = true
         }
 
-        if (doarTrue) return Swal.fire(`Você doou R$ ${valor},00 para a (EMPRESA3). Todos nós somos gratos!`)
+        if (doarTrue) return Swal.fire({
+            title: `Confirmação para doar R$ ${valor},00.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Doar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) Swal.fire({
+                icon: 'success',
+                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+            })
+        })
 
         Swal.fire({
             icon: 'error',
@@ -713,7 +752,7 @@ let doarDinheiroEmpresa3 = () => {
 }
 
 let doarVestimentaEmpresa1 = () => {
-    let selectV = document.getElementById('selectVestimentas')
+    let selectV = document.getElementById('opcoesVestimentas1')
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (data == null) return Swal.fire({
@@ -721,29 +760,296 @@ let doarVestimentaEmpresa1 = () => {
         title: 'Insira uma data.'
     })
 
-    if (selectV.value == 'Peça superior') Swal.fire(`Agradecemos por escolher doar uma peça superior!`)
-    if (selectV.value == 'Peça inferior') Swal.fire(`Agradecemos por escolher doar uma peça inferior!`)
-    if (selectV.value == 'Calçado') Swal.fire(`Agradecemos por escolher doar um calçado!`)
+    if (selectV.value == 'Peça superior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça superior!`,
+    })
+    if (selectV.value == 'Peça inferior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça inferior!`,
+    })
+    if (selectV.value == 'Calçado') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar um calçado!`,
+    })
 }
 
 let doarVestimentaEmpresa2 = () => {
+    let selectV = document.getElementById('opcoesVestimentas2')
+    let data = document.getElementById('dataDeEntregaVestimenta')
 
+    if (data == null) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    if (selectV.value == 'Peça superior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça superior!`,
+    })
+    if (selectV.value == 'Peça inferior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça inferior!`,
+    })
+    if (selectV.value == 'Calçado') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar um calçado!`,
+    })
 }
 
 let doarVestimentaEmpresa3 = () => {
+    let selectV = document.getElementById('opcoesVestimentas3')
+    let data = document.getElementById('dataDeEntregaVestimenta')
 
+    if (data == null) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    if (selectV.value == 'Peça superior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça superior!`,
+    })
+    if (selectV.value == 'Peça inferior') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar uma peça inferior!`,
+    })
+    if (selectV.value == 'Calçado') Swal.fire({
+        icon: 'success',
+        title: `Agradecemos por escolher doar um calçado!`,
+    })
 }
 
 let doarAlimentoEmpresa1 = () => {
+    let selectA = document.getElementById('opcoesAlimentos1')
+    let data = document.getElementById('dataDeEntregaVestimenta')
 
+    if (null == data) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    switch (selectA.value) {
+        case 'arroz':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+
+            break
+        case 'feijão':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'macarrão':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'soja':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+    }
 }
 
 let doarAlimentoEmpresa2 = () => {
+    let selectA = document.getElementById('opcoesAlimentos2')
+    let data = document.getElementById('dataDeEntregaVestimenta')
 
+    if (null == data) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    switch (selectA.value) {
+        case 'leite em pó':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'café':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'açúcar':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'sal':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+    }
 }
 
 let doarAlimentoEmpresa3 = () => {
+    let selectA = document.getElementById('opcoesAlimentos3')
+    let data = document.getElementById('dataDeEntregaVestimenta')
 
+    if (null == data) return Swal.fire({
+        icon: 'error',
+        title: 'Insira uma data.'
+    })
+
+    switch (selectA.value) {
+        case 'polvilho':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'fubá':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'farinha de trigo':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+        case 'óleo':
+            Swal.fire({
+                title: `Confirmação para doar ${selectA.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos pela sua escolha!`,
+                })
+            })
+            break
+    }
 }
 
 let listarAtualizarUsuario = () => {
