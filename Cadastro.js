@@ -40,9 +40,7 @@ let adicionarUsuario = () => {
         usuario.dataNascimento,
     ]
 
-    if (listaDeUsuarios == null) {
-        listaDeUsuarios = []
-    }
+    if (listaDeUsuarios == null) listaDeUsuarios = []
 
     for (let i = 0; i < verificarUsuarioPreencher.length; i++) {
         if (verificarUsuarioPreencher[i] == '') {
@@ -624,8 +622,11 @@ $("#radio3-5, #radio3-10, #radio3-20, #radio3-40").on('click', function () {
     document.getElementById('valorDoar3').value = null
 })
 
+let informacaoDoacoes = []
 
 let doarDinheiroEmpresa1 = () => {
+    informacaoDoacoes = JSON.parse(localStorage.getItem('informacaoDoacoes'))
+
     arrayRadios = [
         radio1 = document.getElementById('radio1-5'),
         radio2 = document.getElementById('radio1-10'),
@@ -634,6 +635,8 @@ let doarDinheiroEmpresa1 = () => {
     ]
     valorDoar1 = document.getElementById('valorDoar1').value
     doarTrue = false
+
+    if (informacaoDoacoes == null) informacaoDoacoes = []
 
     for (let i = 0; i < arrayRadios.length; i++) {
         if (arrayRadios[i].checked) {
@@ -657,7 +660,11 @@ let doarDinheiroEmpresa1 = () => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
                 title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+               
             })
+            informacaoDoacoes.push(valor)
+            informacaoDoacoes.push(document.getElementById('nomeEmpresa'))
+            localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
 
         Swal.fire({
