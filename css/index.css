@@ -201,6 +201,10 @@ body, html {
     display: block;
 }
 
+.page-footer {
+    width: 100%;
+}
+
 textarea {
     resize: none;
 }
