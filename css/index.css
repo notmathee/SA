@@ -128,7 +128,6 @@ body, html {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: 100vw;
     margin: auto;
 }
 
@@ -182,7 +181,6 @@ body, html {
 }
 
 .col-blue {
-    width: 100vw;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     /* padding-left: 0; */
