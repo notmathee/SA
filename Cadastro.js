@@ -1,4 +1,5 @@
 let listaDeUsuarios = []
+let listaDeEmpresas = []
 let usuarioLogado
 let empresaLogado
 let adminLogado
@@ -46,7 +47,7 @@ let adicionarUsuario = () => {
     for (let i = 0; i < verificarUsuarioPreencher.length; i++) {
         if (verificarUsuarioPreencher[i] == '') {
             return Swal.fire({
-                icon: 'error',
+                icon: 'warning',
                 title: 'Todos os campos precisam ser preenchidos!'
             })
         }
@@ -94,7 +95,7 @@ let adicionarEmpresa = () => {
     for (let i = 0; i < verificarEmpresaPreencher.length; i++) {
         if (verificarEmpresaPreencher[i] == '') {
             return Swal.fire({
-                icon: 'error',
+                icon: 'warning',
                 allowOutsideClick: false,
                 title: 'Todos os campos precisam ser preenchidos!',
             })
@@ -230,7 +231,7 @@ let logarEmpresa = () => {
     loginInvalido = true
 
     if (numeroInscricaoLogin == '' || senhaEmpresaLogin == '') return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Todos os campos precisam ser preenchidos!'
     })
     if (numeroInscricaoLogin == empresaLogado || usuarioLogado != null) return Swal.fire({
@@ -257,15 +258,25 @@ let logarEmpresa = () => {
 }
 
 $('#swalLogin').on('click', function () {
+    listaDeUsuarios = JSON.parse(localStorage.getItem('listaDeUsuarios'))
+    listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    if (usuarioLogado == null && empresaLogado == null) return $('#exampleModalLogin').modal("toggle")
+    for (let i = 0; i < listaDeUsuarios.length; i++) {
+        if (usuarioLogado == listaDeUsuarios[i].email) return Swal.fire({
+            icon: 'warning',
+            title: `Você está logado(a), ${listaDeUsuarios[i].nome}. Veja seu perfil para mais informações.`,
+        })
+    }
+    for (let i = 0; i < listaDeEmpresas.length; i++) {
+        if (empresaLogado == listaDeEmpresas[i].numeroInscricao) return Swal.fire({
+            icon: 'warning',
+            title: `Você está logado(a) com a instituição "${listaDeEmpresas[i].nomeEmpresa}". Veja seu perfil para mais informações.`,
+        })
+    }
 
-    Swal.fire({
-        icon: 'warning',
-        title: 'Você já está logado.',
-    })
+    $('#exampleModalLogin').modal("toggle")
 })
 
 $('.buttonSolicitar').on('click', function () {
@@ -274,12 +285,12 @@ $('.buttonSolicitar').on('click', function () {
 
     if (empresaLogado != null) return $('#exampleModalSolicitar').modal('toggle')
     if (empresaLogado == null && usuarioLogado != null) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Só é possível solicitar doações como instituição.'
     })
 
     Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Primeiro, faça login ou crie uma conta.'
     })
 
@@ -293,7 +304,7 @@ $('#swalPerfil').on('click', function () {
     if (empresaLogado != null && usuarioLogado == null) return window.location.href = "paginaListarEmpresa.html"
 
     Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Primeiro, faça login ou cadastre uma conta.',
     })
 })
@@ -311,7 +322,7 @@ $("#swalSair").on('click', function () {
     }
 
     Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Você não está logado.'
     })
 })
@@ -342,13 +353,37 @@ $('#usuario-redefinir-senha-btn').on('click', function () {
 })
 
 $("#buttonSolicitarAlimento").on('click', function () {
-    $("#exampleModalSolicitarAlimento").modal('toggle')
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (empresaLogado != null) return $("#exampleModalSolicitarAlimento").modal('toggle')
+
+    Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
 })
 $("#buttonSolicitarVestimenta").on('click', function () {
-    $("#exampleModalSolicitarVestimenta").modal('toggle')
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (empresaLogado != null) return $("#exampleModalSolicitarAlimento").modal('toggle')
+
+    Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
 })
 $("#buttonSolicitarDinheiro").on('click', function () {
-    $("#exampleModalSolicitarDinheiro").modal('toggle')
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (empresaLogado != null) return $("#exampleModalSolicitarAlimento").modal('toggle')
+
+    Swal.fire({
+        icon: 'warning',
+        title: 'Apenas instituições podem solicitar doações. Tenha certeza de estar logado.'
+    })
 })
 
 $("#buttonDoarDinheiro1").on('click', function () {
@@ -514,13 +549,13 @@ let editarUsuario = () => {
 
     for (i = 0; i < arrayCadastroEditarUsuario.length; i++) {
         if (arrayCadastroEditarUsuario[i] == '') return Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Preencha todos os campos.'
         })
     }
     for (let i = 0; i < arrayCadastroEditarEmpresa.length; i++) {
         if (arrayCadastroEditarEmpresa[i] == '') return Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Preencha todos os campos.'
         })
     }
@@ -618,7 +653,7 @@ let solicitarDinheiro = () => {
 
     for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
         if (arraySolicitarEmpresa[i] == '') return Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Todos os campos precisam ser preenchidos!'
         })
     }
@@ -638,7 +673,7 @@ let solicitarVestimenta = () => {
 
     for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
         if (arraySolicitarEmpresa[i] == '') return Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Todos os campos precisam ser preenchidos!'
         })
     }
@@ -658,7 +693,7 @@ let solicitarAlimento = () => {
 
     for (let i = 0; i < arraySolicitarEmpresa.length; i++) {
         if (arraySolicitarEmpresa[i] == '') return Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Todos os campos precisam ser preenchidos!'
         })
     }
@@ -737,7 +772,7 @@ let doarDinheiroEmpresa1 = () => {
         })
 
         Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Selecione ao menos um valor.'
         })
     }
@@ -789,7 +824,7 @@ let doarDinheiroEmpresa2 = () => {
         })
 
         Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Selecione ao menos um valor.'
         })
     }
@@ -844,7 +879,7 @@ let doarDinheiroEmpresa3 = () => {
         })
 
         Swal.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Selecione ao menos um valor.'
         })
     }
@@ -855,7 +890,7 @@ let doarVestimentaEmpresa1 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (data == null) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
@@ -878,7 +913,7 @@ let doarVestimentaEmpresa2 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (data == null) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
@@ -901,7 +936,7 @@ let doarVestimentaEmpresa3 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (data == null) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
@@ -924,7 +959,7 @@ let doarAlimentoEmpresa1 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (null == data) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
@@ -1002,7 +1037,7 @@ let doarAlimentoEmpresa2 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (null == data) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
@@ -1079,7 +1114,7 @@ let doarAlimentoEmpresa3 = () => {
     let data = document.getElementById('dataDeEntregaVestimenta')
 
     if (null == data) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Insira uma data.'
     })
 
