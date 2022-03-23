@@ -360,7 +360,7 @@ $("#buttonSolicitarAlimento").on('click', function () {
 
     Swal.fire({
         icon: 'warning',
-        title: 'Primeiro faça login ou crie uma conta.'
+        title: 'Apenas instituições podem solicitar doações. Tenha certeza de estar logado.'
     })
 })
 $("#buttonSolicitarVestimenta").on('click', function () {
@@ -371,7 +371,7 @@ $("#buttonSolicitarVestimenta").on('click', function () {
 
     Swal.fire({
         icon: 'warning',
-        title: 'Primeiro faça login ou crie uma conta.'
+        title: 'Apenas instituições podem solicitar doações. Tenha certeza de estar logado.'
     })
 })
 $("#buttonSolicitarDinheiro").on('click', function () {
