@@ -103,9 +103,7 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content:space-around;
-    padding-top: 2rem;
-    margin-inline: 1rem;
-    
+    margin-inline: 3rem;
 }
 
 
@@ -117,6 +115,13 @@ body, html {
 
 .titulo {
     font-weight: 700;
+}
+
+.titulo-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
 }
 
 .caixa-doar {
@@ -136,6 +141,13 @@ body, html {
 .solicitar {
     padding-top: 2rem;
     padding-bottom: 1rem;
+}
+
+.img-btn {
+    width: 150px;
+    height: 100px;
+    margin-bottom: 1rem;
+    border-radius: 5px;
 }
 
 .navbar-nav {
@@ -219,4 +231,17 @@ textarea {
 ul {
     justify-content: end;
     margin-left: 4rem;
+}
+
+@media screen and (max-width: 756px) {
+    .col-row {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        margin: auto;
+    }
+    .col-doar {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
 }
