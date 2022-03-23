@@ -1,6 +1,7 @@
 let listaDeUsuarios = []
 let usuarioLogado
 let empresaLogado
+let adminLogado
 
 let empresa = {
     nomeEmpresa: '',
@@ -195,11 +196,11 @@ let logarUsuario = () => {
     loginInvalido = true
 
     if (emailLogin == '' || senhaLogin == '') return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Todos os campos precisam ser preenchidos!'
     })
     if (emailLogin == usuarioLogado || empresaLogado != null) return Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Você já está logado.',
     })
 
@@ -262,7 +263,7 @@ $('#swalLogin').on('click', function () {
     if (usuarioLogado == null && empresaLogado == null) return $('#exampleModalLogin').modal("toggle")
 
     Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Você já está logado.',
     })
 })
@@ -351,32 +352,95 @@ $("#buttonSolicitarDinheiro").on('click', function () {
 })
 
 $("#buttonDoarDinheiro1").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarDinheiro1").modal('toggle')
 })
 $("#buttonDoarDinheiro2").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarDinheiro2").modal('toggle')
 })
 $("#buttonDoarDinheiro3").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarDinheiro3").modal('toggle')
 })
 
 $("#buttonDoarVestimenta1").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarVestimenta1").modal('toggle')
 })
 $("#buttonDoarVestimenta2").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarVestimenta2").modal('toggle')
 })
 $("#buttonDoarVestimenta3").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarVestimenta3").modal('toggle')
 })
 
 $("#buttonDoarAlimento1").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarAlimento1").modal('toggle')
 })
 $("#buttonDoarAlimento2").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarAlimento2").modal('toggle')
 })
 $("#buttonDoarAlimento3").on('click', function () {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado == null && empresaLogado == null) return Swal.fire({
+        icon: 'warning',
+        title: 'Primeiro faça login ou crie uma conta.'
+    })
     $("#exampleModalDoarAlimento3").modal('toggle')
 })
 
@@ -625,6 +689,7 @@ $("#radio3-5, #radio3-10, #radio3-20, #radio3-40").on('click', function () {
 let informacaoDoacoes = []
 
 let doarDinheiroEmpresa1 = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     informacaoDoacoes = JSON.parse(localStorage.getItem('informacaoDoacoes'))
 
     arrayRadios = [
@@ -634,6 +699,7 @@ let doarDinheiroEmpresa1 = () => {
         radio4 = document.getElementById('radio1-40'),
     ]
     valorDoar1 = document.getElementById('valorDoar1').value
+    infoEmpresa11 = document.getElementById('infoEmpresa11').innerText
     doarTrue = false
 
     if (informacaoDoacoes == null) informacaoDoacoes = []
@@ -659,11 +725,14 @@ let doarDinheiroEmpresa1 = () => {
         }).then((result) => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
-                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
-               
+                title: `Você doou R$ ${valor},00 para a (EMPRESA1). Todos nós somos gratos!`,
             })
-            informacaoDoacoes.push(valor)
-            informacaoDoacoes.push(document.getElementById('nomeEmpresa'))
+            usuarioDoacoes = {
+                usuarioDoador: usuarioLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa13,
+            }
+            informacaoDoacoes.push(usuarioDoacoes)
             localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
 
@@ -682,7 +751,10 @@ let doarDinheiroEmpresa2 = () => {
         radio4 = document.getElementById('radio2-40'),
     ]
     valorDoar2 = document.getElementById('valorDoar2').value
+    infoEmpresa12 = document.getElementById('infoEmpresa12').innerText
     doarTrue = false
+
+    if (informacaoDoacoes == null) informacaoDoacoes = []
 
     for (let i = 0; i < arrayRadios.length; i++) {
         if (arrayRadios[i].checked) {
@@ -707,6 +779,13 @@ let doarDinheiroEmpresa2 = () => {
                 icon: 'success',
                 title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
             })
+            usuarioDoacoes = {
+                usuarioDoador: usuarioLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa13,
+            }
+            informacaoDoacoes.push(usuarioDoacoes)
+            localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
 
         Swal.fire({
@@ -724,7 +803,10 @@ let doarDinheiroEmpresa3 = () => {
         radio4 = document.getElementById('radio3-40'),
     ]
     valorDoar3 = document.getElementById('valorDoar3').value
+    infoEmpresa13 = document.getElementById('infoEmpresa13').innerText
     doarTrue = false
+
+    if (informacaoDoacoes == null) informacaoDoacoes = []
 
     for (let i = 0; i < arrayRadios.length; i++) {
         if (arrayRadios[i].checked) {
@@ -747,8 +829,18 @@ let doarDinheiroEmpresa3 = () => {
         }).then((result) => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
-                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+                title: `Você doou R$ ${valor},00 para a (EMPRESA3). Todos nós somos gratos!`,
             })
+            usuarioDoacoes = {
+                usuarioDoador: usuarioLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa13,
+            }
+            informacaoDoacoes.push(usuarioDoacoes)
+            // informacaoDoacoes.push(usuarioLogado)
+            // informacaoDoacoes.push(valor)
+            // informacaoDoacoes.push(infoEmpresa13)
+            localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
 
         Swal.fire({
