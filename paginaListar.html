@@ -21,34 +21,33 @@
 <body onload="listarAtualizarUsuario()">
   <header class="header-cedim">
     <h1 class="cedim">CEDIM</h1>
-</header>
+  </header>
 
-<div class="container">
-    
+  <div class="container">
+
     <div class="informacoes">
-        <div class="form">
+      <div class="form">
 
-  <label for="">Nome:</label>
-  <p type="text" id="nomeCadastroMostrar"></p>
+        <label for="">Nome:</label>
+        <p type="text" id="nomeCadastroMostrar"></p>
 
-  <label for="">Email:</label>
-  <p type="text" id="emailCadastroMostrar"></p>
+        <label for="">Email:</label>
+        <p type="text" id="emailCadastroMostrar"></p>
 
-  <label for="">Celular:</label>
-  <p type="text" id="celularCadastroMostrar"></p>
+        <label for="">Celular:</label>
+        <p type="text" id="celularCadastroMostrar"></p>
 
-  <label for="">CPF:</label>
-  <p type="text" id="cpfCadastroMostrar"></p>
+        <label for="">CPF:</label>
+        <p type="text" id="cpfCadastroMostrar"></p>
 
-  <label for="">Data de nascimento:</label>
-  <p type="text" id="dataNascimentoMostrar"></p>
- </div>
-</div>
+        <label for="">Data de nascimento:</label>
+        <p type="text" id="dataNascimentoMostrar"></p>
+      </div>
+    </div>
 
     <!-- modals -->
 
-    <div class="modal" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -86,7 +85,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Redefinir Senha</h5>
             <button type="button" id="btnFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-  
+
           <div class="modal-body">
             <div class="mb-3">
               <label for="redefinirSenha" class="col-form-label">Confirme o Email:</label>
@@ -101,7 +100,7 @@
               <input type="password" class="form-control" id="confirmarSenha">
             </div>
           </div>
-  
+
           <div class="modal-footer">
             <button type="button" class="btn btn-terciary" data-bs-dismiss="modal">Fechar</button>
             <button type="button" onclick="redefinirSenha()" class="btn btn-primary">Redefinir</button>
@@ -115,10 +114,12 @@
     <div class="btn">
       <button type="button" class="btn btn-restantes" onclick="excluirUsuario()">Excluir conta</button>
 
-      <button type="button" class="btn btn-restantes" id="editar-btn" data-bs-toggle="modal" data-bs-target="#exampleModalEditar">Editar
+      <button type="button" class="btn btn-restantes" id="editar-btn" data-bs-toggle="modal"
+        data-bs-target="#exampleModalEditar">Editar
         conta</button>
 
-      <button type="button" class="btn btn-restantes" id="redefinir-btn" data-bs-toggle="modal" data-bs-target="#exampleModalRedefinir">Redefinir
+      <button type="button" class="btn btn-restantes" id="redefinir-btn" data-bs-toggle="modal"
+        data-bs-target="#exampleModalRedefinir">Redefinir
         senha</button>
     </div>
   </div>
@@ -189,7 +190,7 @@
         </li>
       </ul>
     </div> -->
-<!-- 
+    <!-- 
     <div class="page-footer-nav-col-4">
       <h2 class="footer-nav-heading" href="">Desenvolvedores</h2>
       <ul class="footer-nav-list">
