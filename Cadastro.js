@@ -291,7 +291,7 @@ $('.buttonSolicitar').on('click', function () {
 
     Swal.fire({
         icon: 'warning',
-        title: 'Primeiro, faça login ou crie uma conta.'
+        title: 'Primeiro, faça login com uma instituição ou crie uma conta.'
     })
 
 })
