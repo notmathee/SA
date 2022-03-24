@@ -125,10 +125,6 @@ body, html {
 
 }
 
-.titulo {
-    font-weight: 700;
-}
-
 .titulo-img {
     display: flex;
     justify-content: center;
@@ -137,7 +133,6 @@ body, html {
 }
 
 .caixa-doar {
-    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,6 +143,67 @@ body, html {
     justify-content: space-around;
     flex-direction: row;
     margin: auto;
+}
+
+.row-sobre {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row; 
+    margin: 1rem;
+    
+}
+
+.col-sobre {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: rgba(180, 171, 171, 0.411);
+    font-weight: 400;
+    text-align: center;
+}
+
+.col-sobre2 {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: #43414948;
+    font-weight: 400;
+    text-align: center;
+}
+
+.titulo {
+    font-weight: 700;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+}
+
+.subtitulo {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+}
+
+.subtitulo2 {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+}
+
+.fa-users-viewfinder {
+    margin: 0;
+    padding-bottom: .5rem;
+}
+
+.fa-bullseye {
+    margin: 0;
+    padding-bottom: .5rem;
+}
+
+.fa-arrows-to-eye {
+    margin: 0;
+    padding-bottom: .5rem;
 }
 
 .solicitar {
@@ -245,15 +301,36 @@ ul {
     margin-left: 4rem;
 }
 
-@media screen and (max-width: 756px) {
+@media screen and (max-width: 770px) {
     .col-row {
         display: flex;
         justify-content: space-around;
         flex-direction: column;
         margin: auto;
     }
+
     .col-doar {
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
+
+    .row-sobre {
+        flex-direction: column;
+    }
+
+    .col-sobre {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .subtitulo {
+        justify-content: center;
+        justify-self: center;
+        justify-items: center;
+    }
+}
+
+@media screen and (max-width: 771px) {
+
 }

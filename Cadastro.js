@@ -210,7 +210,11 @@ let logarUsuario = () => {
             usuarioLogado = emailLogin
             loginInvalido = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
-            return Swal.fire('Login efetuado.')
+            return Swal.fire('Login efetuado.').then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = './index.html'
+                }
+            })
         }
     })
 
@@ -245,7 +249,11 @@ let logarEmpresa = () => {
             empresaLogado = numeroInscricaoLogin
             loginInvalido = false
             localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
-            return Swal.fire('Login efetuado.')
+            return Swal.fire('Login efetuado.').then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = './index.html'
+                }
+            })
         }
     })
 
@@ -318,7 +326,11 @@ $("#swalSair").on('click', function () {
         empresaLogado = null
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
         localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
-        return Swal.fire('Você saiu da sua conta.')
+        return Swal.fire('Você saiu da sua conta.').then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = './index.html'
+            }
+        })
     }
 
     Swal.fire({
@@ -367,7 +379,7 @@ $("#buttonSolicitarVestimenta").on('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    if (empresaLogado != null) return $("#exampleModalSolicitarAlimento").modal('toggle')
+    if (empresaLogado != null) return $("#exampleModalSolicitarVestimenta").modal('toggle')
 
     Swal.fire({
         icon: 'warning',
@@ -378,7 +390,7 @@ $("#buttonSolicitarDinheiro").on('click', function () {
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
 
-    if (empresaLogado != null) return $("#exampleModalSolicitarAlimento").modal('toggle')
+    if (empresaLogado != null) return $("#exampleModalSolicitarDinheiro").modal('toggle')
 
     Swal.fire({
         icon: 'warning',
@@ -760,13 +772,21 @@ let doarDinheiroEmpresa1 = () => {
         }).then((result) => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
-                title: `Você doou R$ ${valor},00 para a (EMPRESA1). Todos nós somos gratos!`,
+                title: `Você doou R$ ${valor},00 para Casa Cor. Todos nós somos gratos!`,
+            }).then((result) => {
+                if (result.isConfirmed) $("#exampleModalDoarDinheiro1").modal('toggle')
             })
-            usuarioDoacoes = {
+            if (usuarioLogado != null) usuarioDoacoes = {
                 usuarioDoador: usuarioLogado,
                 valorDoado: valor,
-                informacoes: infoEmpresa13,
+                informacoes: infoEmpresa11,
             }
+            if (empresaLogado != null) usuarioDoacoes = {
+                usuarioDoador: empresaLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa11,
+            }
+
             informacaoDoacoes.push(usuarioDoacoes)
             localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
@@ -812,13 +832,21 @@ let doarDinheiroEmpresa2 = () => {
         }).then((result) => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
-                title: `Você doou R$ ${valor},00 para a (EMPRESA2). Todos nós somos gratos!`,
+                title: `Você doou R$ ${valor},00 para Orfanato Raio de Luz. Todos nós somos gratos!`,
+            }).then((result) => {
+                if (result.isConfirmed) $("#exampleModalDoarDinheiro2").modal('toggle')
             })
-            usuarioDoacoes = {
+            if (usuarioLogado != null) usuarioDoacoes = {
                 usuarioDoador: usuarioLogado,
                 valorDoado: valor,
-                informacoes: infoEmpresa13,
+                informacoes: infoEmpresa12,
             }
+            if (empresaLogado != null) usuarioDoacoes = {
+                usuarioDoador: empresaLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa12,
+            }
+
             informacaoDoacoes.push(usuarioDoacoes)
             localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
@@ -831,6 +859,9 @@ let doarDinheiroEmpresa2 = () => {
 }
 
 let doarDinheiroEmpresa3 = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
     arrayRadios = [
         radio1 = document.getElementById('radio3-5'),
         radio2 = document.getElementById('radio3-10'),
@@ -864,101 +895,244 @@ let doarDinheiroEmpresa3 = () => {
         }).then((result) => {
             if (result.isConfirmed) Swal.fire({
                 icon: 'success',
-                title: `Você doou R$ ${valor},00 para a (EMPRESA3). Todos nós somos gratos!`,
+                title: `Você doou R$ ${valor},00 para a Abrigo Esperança. Todos nós somos gratos!`,
+            }).then((result) => {
+                if (result.isConfirmed) $("#exampleModalDoarDinheiro3").modal('toggle')
             })
-            usuarioDoacoes = {
+            if (usuarioLogado != null) usuarioDoacoes = {
                 usuarioDoador: usuarioLogado,
                 valorDoado: valor,
                 informacoes: infoEmpresa13,
             }
+            if (empresaLogado != null) usuarioDoacoes = {
+                usuarioDoador: empresaLogado,
+                valorDoado: valor,
+                informacoes: infoEmpresa13,
+            }
+
             informacaoDoacoes.push(usuarioDoacoes)
-            // informacaoDoacoes.push(usuarioLogado)
-            // informacaoDoacoes.push(valor)
-            // informacaoDoacoes.push(infoEmpresa13)
             localStorage.setItem('informacaoDoacoes', JSON.stringify(informacaoDoacoes))
         })
-
-        Swal.fire({
-            icon: 'warning',
-            title: 'Selecione ao menos um valor.'
-        })
     }
+
+    Swal.fire({
+        icon: 'warning',
+        title: 'Selecione ao menos um valor.'
+    })
 }
 
 let doarVestimentaEmpresa1 = () => {
     let selectV = document.getElementById('opcoesVestimentas1')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaVestimenta1').value
 
-    if (data == null) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
 
-    if (selectV.value == 'Peça superior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça superior!`,
-    })
-    if (selectV.value == 'Peça inferior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça inferior!`,
-    })
-    if (selectV.value == 'Calçado') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar um calçado!`,
-    })
+    switch (selectV.value) {
+        case 'peça superior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta1").modal('toggle')
+                })
+            })
+            break
+
+        case 'peça inferior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta1").modal('toggle')
+                })
+            })
+            break
+
+        case 'calçado':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta1").modal('toggle')
+                })
+            })
+            break
+    }
 }
 
 let doarVestimentaEmpresa2 = () => {
     let selectV = document.getElementById('opcoesVestimentas2')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaVestimenta2').value
 
-    if (data == null) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
 
-    if (selectV.value == 'Peça superior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça superior!`,
-    })
-    if (selectV.value == 'Peça inferior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça inferior!`,
-    })
-    if (selectV.value == 'Calçado') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar um calçado!`,
-    })
+    switch (selectV.value) {
+        case 'peça superior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta2").modal('toggle')
+                })
+            })
+            break
+
+        case 'peça inferior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta2").modal('toggle')
+                })
+            })
+            break
+
+        case 'calçado':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta2").modal('toggle')
+                })
+            })
+            break
+    }
 }
 
 let doarVestimentaEmpresa3 = () => {
     let selectV = document.getElementById('opcoesVestimentas3')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaVestimenta3').value
 
-    if (data == null) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
 
-    if (selectV.value == 'Peça superior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça superior!`,
-    })
-    if (selectV.value == 'Peça inferior') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar uma peça inferior!`,
-    })
-    if (selectV.value == 'Calçado') Swal.fire({
-        icon: 'success',
-        title: `Agradecemos por escolher doar um calçado!`,
-    })
+    switch (selectV.value) {
+        case 'peça superior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta3").modal('toggle')
+                })
+            })
+            break
+
+        case 'peça inferior':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta3").modal('toggle')
+                })
+            })
+            break
+
+        case 'calçado':
+            Swal.fire({
+                title: `Confirmação para doar ${selectV.value}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Doar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) Swal.fire({
+                    icon: 'success',
+                    title: `Agradecemos por escolher doar ${selectV.value}!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarVestimenta3").modal('toggle')
+                })
+            })
+            break
+    }
 }
 
 let doarAlimentoEmpresa1 = () => {
     let selectA = document.getElementById('opcoesAlimentos1')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaAlimento1').value
 
-    if (null == data) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
@@ -977,10 +1151,12 @@ let doarAlimentoEmpresa1 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento1").modal('toggle')
                 })
             })
-
             break
+
         case 'feijão':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -994,9 +1170,12 @@ let doarAlimentoEmpresa1 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento1").modal('toggle')
                 })
             })
             break
+
         case 'macarrão':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1010,9 +1189,12 @@ let doarAlimentoEmpresa1 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento1").modal('toggle')
                 })
             })
             break
+
         case 'soja':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1026,6 +1208,8 @@ let doarAlimentoEmpresa1 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento1").modal('toggle')
                 })
             })
             break
@@ -1034,9 +1218,9 @@ let doarAlimentoEmpresa1 = () => {
 
 let doarAlimentoEmpresa2 = () => {
     let selectA = document.getElementById('opcoesAlimentos2')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaAlimento2').value
 
-    if (null == data) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
@@ -1055,9 +1239,12 @@ let doarAlimentoEmpresa2 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento2").modal('toggle')
                 })
             })
             break
+
         case 'café':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1071,9 +1258,12 @@ let doarAlimentoEmpresa2 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento2").modal('toggle')
                 })
             })
             break
+
         case 'açúcar':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1087,9 +1277,12 @@ let doarAlimentoEmpresa2 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento2").modal('toggle')
                 })
             })
             break
+
         case 'sal':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1103,6 +1296,8 @@ let doarAlimentoEmpresa2 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento2").modal('toggle')
                 })
             })
             break
@@ -1111,9 +1306,9 @@ let doarAlimentoEmpresa2 = () => {
 
 let doarAlimentoEmpresa3 = () => {
     let selectA = document.getElementById('opcoesAlimentos3')
-    let data = document.getElementById('dataDeEntregaVestimenta')
+    let data = document.getElementById('dataDeEntregaAlimento3').value
 
-    if (null == data) return Swal.fire({
+    if (data == '') return Swal.fire({
         icon: 'warning',
         title: 'Insira uma data.'
     })
@@ -1132,9 +1327,12 @@ let doarAlimentoEmpresa3 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento3").modal('toggle')
                 })
             })
             break
+
         case 'fubá':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1148,9 +1346,12 @@ let doarAlimentoEmpresa3 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento3").modal('toggle')
                 })
             })
             break
+
         case 'farinha de trigo':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1164,9 +1365,12 @@ let doarAlimentoEmpresa3 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento3").modal('toggle')
                 })
             })
             break
+
         case 'óleo':
             Swal.fire({
                 title: `Confirmação para doar ${selectA.value}.`,
@@ -1180,10 +1384,20 @@ let doarAlimentoEmpresa3 = () => {
                 if (result.isConfirmed) Swal.fire({
                     icon: 'success',
                     title: `Agradecemos pela sua escolha!`,
+                }).then((result) => {
+                    if (result.isConfirmed) $("#exampleModalDoarAlimento3").modal('toggle')
                 })
             })
             break
     }
+}
+
+let mostrarLogin = () => {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+
+    if (usuarioLogado != null) return $("#faJavascript").addClass('fa fa-solid fa-heart-circle-check')
+    if (empresaLogado != null) return $("#faJavascript").addClass('fa fa-solid fa-house-circle-check')
 }
 
 let listarAtualizarUsuario = () => {
