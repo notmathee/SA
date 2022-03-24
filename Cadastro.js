@@ -3,6 +3,7 @@ let listaDeEmpresas = []
 let usuarioLogado
 let empresaLogado
 let adminLogado
+let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 let empresa = {
     nomeEmpresa: '',
@@ -52,6 +53,22 @@ let adicionarUsuario = () => {
             })
         }
     }
+    if (document.getElementById('senhaCadastro').value.length < 8) return Swal.fire({
+        icon: 'warning',
+        title: 'A senha precisa ter no mínimo 8 caracteres.'
+    })
+    if (document.getElementById('senhaCadastro').value.length > 15) return Swal.fire({
+        icon: 'warning',
+        title: 'A senha deve ter no máximo 15 caracteres.'
+    })
+    if (document.getElementById('cpfCadastro').value.length != 11) return Swal.fire({
+        icon: 'warning',
+        title: 'O CPF deve conter 11 dígitos.'
+    })
+    if (!document.getElementById('emailCadastro').value.match(validRegex)) return Swal.fire({
+        icon: 'warning',
+        title: 'Email inválido.'
+    })
 
     emailValido = true
     listaDeUsuarios.forEach(usuarioCadastro => {
@@ -67,7 +84,9 @@ let adicionarUsuario = () => {
     if (emailValido) {
         listaDeUsuarios.push(usuario)
         localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
-        Swal.fire('Dados salvos.')
+        Swal.fire('Dados salvos.').then((result) => {
+            if (result.isConfirmed) $("#exampleModalCadastro").modal('toggle')
+        })
     }
 }
 
@@ -101,6 +120,18 @@ let adicionarEmpresa = () => {
             })
         }
     }
+    if (document.getElementById('numeroInscricao').value.length != 14) Swal.fire({
+        icon: 'warning',
+        title: 'O número de inscrição deve ter 14 dígitos.'
+    })
+    if (document.getElementById('senhaEmpresa').value.length < 8) return Swal.fire({
+        icon: 'warning',
+        title: 'A senha precisa ter no mínimo 8 caracteres.'
+    })
+    if (document.getElementById('senhaEmpresa').value.length > 15) return Swal.fire({
+        icon: 'warning',
+        title: 'A senha deve ter no máximo 15 caracteres.'
+    })
 
     inscricaoValida = true
     listaDeEmpresas.forEach(empresaCadastro => {
@@ -206,7 +237,7 @@ let logarUsuario = () => {
     })
 
     listaDeUsuarios.forEach(usuarioLogin => {
-        if (usuarioLogin.email == emailLogin && usuarioLogin.senha == senhaLogin) {
+        if (usuarioLogin.email === emailLogin && usuarioLogin.senha === senhaLogin) {
             usuarioLogado = emailLogin
             loginInvalido = false
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado))
@@ -244,8 +275,8 @@ let logarEmpresa = () => {
     })
 
     listaDeEmpresas.forEach(empresaLogin => {
-        if (empresaLogin.numeroInscricao == numeroInscricaoLogin &&
-            empresaLogin.senhaEmpresa == senhaEmpresaLogin) {
+        if (empresaLogin.numeroInscricao === numeroInscricaoLogin &&
+            empresaLogin.senhaEmpresa === senhaEmpresaLogin) {
             empresaLogado = numeroInscricaoLogin
             loginInvalido = false
             localStorage.setItem('empresaLogado', JSON.stringify(empresaLogado))
@@ -574,7 +605,7 @@ let editarUsuario = () => {
 
     if (usuarioLogado != null) {
         listaDeUsuarios.forEach(editarDadosUsuario => {
-            if (editarDadosUsuario.email == usuarioLogado) {
+            if (editarDadosUsuario.email === usuarioLogado) {
                 editarDadosUsuario.nome = document.getElementById('nomeCadastroEditar').value
                 editarDadosUsuario.celular = document.getElementById('celularCadastroEditar').value
                 editarDadosUsuario.dataNascimento = document.getElementById('dataNascimentoEditar').value
@@ -607,13 +638,13 @@ let redefinirSenha = () => {
         }
     }
     for (let i = 0; i < listaDeUsuarios.length; i++) {
-        if (novaSenha.value == confirmarNovaSenha.value && listaDeUsuarios[i].email == emailRedefinirSenha.value) {
+        if (novaSenha.value === confirmarNovaSenha.value && listaDeUsuarios[i].email === emailRedefinirSenha.value) {
             listaDeUsuarios[i].senha = novaSenha.value
             localStorage.setItem('listaDeUsuarios', JSON.stringify(listaDeUsuarios))
             return Swal.fire('Senha redefinida.')
         }
     }
-    if (novaSenha.value != confirmarNovaSenha.value) Swal.fire({
+    if (novaSenha.value !== confirmarNovaSenha.value) Swal.fire({
         icon: 'error',
         title: 'As senhas não são iguais.'
     })
@@ -632,7 +663,7 @@ let redefinirSenhaEmpresa = () => {
     let confirmarNovaSenhaEmpresa = document.getElementById('confirmarSenhaEmpresa')
 
     for (let i = 0; i < listaDeEmpresas.length; i++) {
-        if (novaSenhaEmpresa.value == listaDeEmpresas[i].senha) {
+        if (novaSenhaEmpresa.value === listaDeEmpresas[i].senhaEmpresa) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Essa é a sua senha atual.'
@@ -640,8 +671,8 @@ let redefinirSenhaEmpresa = () => {
         }
     }
     for (let i = 0; i < listaDeEmpresas.length; i++) {
-        if (novaSenhaEmpresa.value == confirmarNovaSenhaEmpresa.value &&
-            listaDeEmpresas[i].numeroInscricao == numeroInscricaoRedefinirSenha.value) {
+        if (novaSenhaEmpresa.value === confirmarNovaSenhaEmpresa.value &&
+            listaDeEmpresas[i].numeroInscricao === numeroInscricaoRedefinirSenha.value) {
             listaDeEmpresas[i].senhaEmpresa = novaSenhaEmpresa.value
             localStorage.setItem('listaDeEmpresas', JSON.stringify(listaDeEmpresas))
             return Swal.fire('Senha redefinida.')
