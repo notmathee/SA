@@ -44,13 +44,17 @@ body, html {
     margin-inline: 1rem;
 }
 
-#scrollEmpresa, #scrollDinheiro, #scrollVestimenta, #scrollAlimento {
-    height: 2rem;
+/* #scrollDinheiro, #scrollVestimenta, #scrollAlimento {
+    height: .5rem;
+} */
+
+#scrollEmpresa {
+    height: 3rem;
 }
 
-#sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
+/* #sobreEmpresa, #doarDinheiro, #doarVestimenta, #doarAlimento {
     height: auto;
-}
+} */
 
 .modal-footer {
     display: grid;
@@ -191,6 +195,14 @@ body, html {
     text-align: center;
 }
 
+.margin-box {
+    margin-top: 3rem;
+}
+
+.my-5 {
+    margin-top: 0;
+}
+
 .fa-users-viewfinder {
     margin: 0;
     padding-bottom: .5rem;
@@ -329,8 +341,4 @@ ul {
         justify-self: center;
         justify-items: center;
     }
-}
-
-@media screen and (max-width: 771px) {
-
 }
