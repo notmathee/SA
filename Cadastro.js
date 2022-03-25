@@ -301,6 +301,9 @@ $('#swalLogin').on('click', function () {
     listaDeEmpresas = JSON.parse(localStorage.getItem('listaDeEmpresas'))
     usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     empresaLogado = JSON.parse(localStorage.getItem('empresaLogado'))
+    
+    if (listaDeUsuarios == null) listaDeUsuarios = []
+    if (listaDeEmpresas == null) listaDeEmpresas = []
 
     for (let i = 0; i < listaDeUsuarios.length; i++) {
         if (usuarioLogado == listaDeUsuarios[i].email) return Swal.fire({
